@@ -1,0 +1,262 @@
+
+
+
+
+
+.auth-dog-navbar-container {
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+    z-index: 1000;
+    background: whitesmoke;
+}
+
+.auth-dog-navbar-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.auth-dog-navbar-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.auth-dog-navbar-wrapper img {
+    width: 95px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    cursor: pointer;
+}
+
+.auth-dog-navbar-wrapper li {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    cursor: pointer;
+}
+
+.auth-dogs-navbar-middle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 89px;
+}
+
+.auth-dogs-navbar-middle-wrapper li {
+    font-size: 1.1rem;
+}
+
+.auth-link {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 0.9rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-link-sgn-in {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+}
+
+.auth-link-accessories {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.auth-dogs-right-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 45px;
+}
+
+.auth-dogs-navbar-middle-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.auth-navbar-hover-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 45px;
+    background: white;
+}
+
+.auth-dogs-navbar-links-hover-one {
+    position: relative;
+    top: 0px;
+    left: -315px;
+    background: whitesmoke;
+    height: 199px;
+}
+
+.auth-dogs-navbar-links-hover-two {
+    position: relative;
+    top: 0px;
+    left: -155px;
+    background: whitesmoke;
+    height: 199px;
+}
+
+.auth-dogs-navbar-links-hover-three {
+    position: relative;
+    top: 0px;
+    left: -19px;
+    background: whitesmoke;
+    height: 199px;
+}
+
+
+
+.auth-dogs-navbar-links-hover-four {
+    position: relative;
+    top: 0px;
+    left: 289px;
+    background: black;
+    height: 180px;
+    width: 110px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+
+.auth-link-section {
+    font-size: 1.1rem;
+    width: 100%;
+    margin: 0px 10px;
+    text-decoration: none;
+    color: blue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-link-section:hover {
+    background: grey;
+    color: green;
+}
+
+
+
+
+.auth-user {
+    position: relative;
+    top:0px;
+    left: 17px;
+}
+
+
+.auth-user-text li {
+    color:green;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+
+
+
+
+
+.auth-link-section-auth-user {
+    font-size: 1.1rem;
+    width: 100%;
+    margin: 0px 10px;
+    text-decoration: none;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+.auth-link-section-auth-user:hover {
+    background: grey;
+    color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Show the hover section when hovered */
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.auth-friendly,
+.auth-family,
+.auth-intelligent {
+    cursor: pointer;
+}
+
+/* Sticky Navbar */
+.auth-sticky-navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure sticky navbar stays behind the sidebar */
+    transition: top 0.3s ease-in-out;
+}
+
+/* Hide navbar when scrolling down */
+.auth-hidden {
+    top: -100px;
+    transition: top 0.3s ease-in-out;
+}
+
+/* Show navbar when scrolling up */
+.auth-visible {
+    top: 0;
+    transition: top 0.3s ease-in-out;
+}
+
+/* Add this class for fading effect */
+.auth-faded-background {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: background-color 0.5s ease-in-out;
+}

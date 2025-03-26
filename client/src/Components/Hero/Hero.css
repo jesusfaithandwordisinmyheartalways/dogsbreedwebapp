@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+
+
+.hero-container {
+    width: 100%;
+    overflow: hidden;
+    z-index: -1000;
+}
+
+.hero-wrapper {
+    background: navy;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 1500px;
+    height: 510px;
+    opacity: 0;
+    transform: rotateY(180deg); /* Start with an off-screen position */
+    animation: spinIn 1.5s ease-out forwards; /* Animation applied here */
+    z-index: -1000;
+
+}
+
+.hero-wrapper img {
+    width: 650px;
+    object-fit: contain;
+    z-index: -1000;
+
+}
+
+.hero-wrapper h3 {
+    color: white;
+    font-size: 3rem;
+    z-index: -1000;
+
+}
+
+/* Spin-in Animation */
+@keyframes spinIn {
+    0% {
+        opacity: 0;
+        transform: rotateY(180deg); /* Start off-screen with rotation */
+    }
+    50% {
+        opacity: 1;
+        transform: rotateY(90deg); /* Halfway point, it's rotated towards the viewer */
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg); /* End at the normal position */
+    }
+}

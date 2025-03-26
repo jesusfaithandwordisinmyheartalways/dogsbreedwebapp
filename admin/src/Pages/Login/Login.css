@@ -1,0 +1,63 @@
+
+
+
+
+
+
+
+.admin-form-container {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.admin-form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+    height: 550px;
+    
+}
+
+.admin-form-wrapper input {
+    padding: 0.8em;
+    text-align: center;
+    background-color: white;  /* Explicitly set the background to white */
+    margin: 9px 0px;
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+    width: 90%;
+}
+
+
+.admin-form-wrapper input:focus {
+    outline: none;  /* Removes the default focus outline */
+    border-color: #007bff;  /* Adds a blue border on focus */
+}
+
+
+.admin-form {
+    width: 100%;
+    border:1px solid black
+}
+
+
+
+.admin-form-wrapper button {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    background: black;
+    color: white;
+    padding: 0.7em;
+    width: 100%;
+    cursor: pointer
+}
+
+.admin-form-wrapper button:hover {
+    background: green
+
+}

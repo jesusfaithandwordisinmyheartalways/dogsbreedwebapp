@@ -1,0 +1,69 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dog-product-wrapper img {
+    width: 292px;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out; 
+}
+
+
+.dog-product-wrapper img:hover {
+    width:292px; /* Prevent it from stretching too wide */
+}
+
+
+
+
+
+
+.price-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    margin:0 auto;
+    position: relative;
+    top:0px;
+    left: 0px;
+    text-align: center;
+
+}
+
+.price-wrapper p.name {
+    text-align: center;
+    font-size: 1rem;
+    color:black
+
+}
+
+
+.price-wrapper p {
+    font-size: 1rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin:4px 0px;
+    color:seagreen
+}
+
+.price-wrapper span:first-child {
+    text-decoration: line-through;
+    font-size: 1rem;
+    color:black
+
+}
+
+
+

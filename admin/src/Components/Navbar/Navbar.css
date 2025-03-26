@@ -1,0 +1,48 @@
+
+
+
+
+
+
+.admin-navbar-container {
+    width: 100%;
+    overflow: hidden;
+    background:whitesmoke
+}
+
+
+
+.admin-navbar-wrapper {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+
+
+.admin-navbar-wrapper img {
+    width: 90px;
+    object-fit: contain;
+}
+
+
+
+.admin-links-wrapper {
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    margin: 0 auto;
+    gap:45px;
+    cursor: pointer;
+}
+
+
+.admin-link {
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    color:green
+}

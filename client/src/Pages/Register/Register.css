@@ -1,0 +1,190 @@
+
+
+
+
+.register-form-container {
+    width: 100%;
+    overflow: hidden;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start from slightly below */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth fade-in and slide-up */
+}
+
+.register-form-container.show {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slide to the original position */
+}
+
+
+
+
+
+
+
+
+.register-form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1550px;
+    height: 89vh;
+  
+}
+
+
+.register-form-wrapper h3 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.register-form-wrapper label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.register-form-wrapper input {
+    padding: 0.5em;
+    width: 310px;
+    margin: 10px 0px;
+}
+
+.register-form-wrapper button {
+    background: black;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    padding: 0.7em;
+    position: relative;
+    top: 0;
+    left: 70px;
+    width: 210px;
+    cursor: pointer;
+}
+
+.register-form-wrapper button:focus {
+    background: black;
+    color: whitesmoke;
+}
+
+
+.register-form-wrapper button:hover {
+    background: seagreen;
+    color: whitesmoke;
+}
+
+.register a {
+    text-decoration: none;
+    color: rgb(41, 20, 116);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: -10px;
+    top: 30px;
+    font-size: 1.2rem;
+}
+
+
+.register a:hover {
+    color: darkgreen;
+    font-size: 1.4rem;
+}
+
+
+
+
+
+.register-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap:98px;
+    
+}
+
+
+
+.register-login-form input[type="email"] {
+    position: relative;
+    top:-19px
+}
+
+
+
+
+
+
+
+.error-msg {
+    display: flex;
+    position: relative;
+    top:-10px;
+    align-items:center;
+    justify-content: center;
+    margin: 0 auto;
+    background:rgb(43, 69, 95);
+}
+
+
+
+
+.error-msg p {
+    color:white;
+    font-size: 0.9rem;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+
+
+
+
+
+
+/*-------------------For ToolTip & Eye Icon --------------------*/
+
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+ 
+}
+
+
+
+
+.password-icon {
+    display: flex; 
+    position: relative;
+    top:-39px;
+    left: 300px;
+    width: 25px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+.tooltip {
+    position: relative;
+    bottom: -20px;
+    right: 30px;
+    background: black;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    
+}
+
+

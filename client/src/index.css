@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+
+
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Make the page take full viewport height */
+}
+.content {
+  flex-grow: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------* style ChevronUp button---------------- */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.scroll-to-top:hover {
+  background-color: #555;
+}
+
+.scroll-to-top:active {
+  transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.overlay-actives {
+  background-color: white !important;
+}

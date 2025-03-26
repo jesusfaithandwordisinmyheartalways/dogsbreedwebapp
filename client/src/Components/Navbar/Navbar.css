@@ -1,0 +1,214 @@
+
+
+
+/* Navbar Container */
+.dog-navbar-container {
+    width: 100%;
+    background: whitesmoke;
+    transition: top 0.3s;
+    z-index: 1000;
+}
+
+/* Sticky Navbar */
+.dog-navbar-container.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Navbar Wrapper */
+.dog-navbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1500px;
+    margin: 0 auto;
+    z-index: 1000;
+}
+
+/* Navbar Logo */
+.dog-navbar-wrapper img {
+    width: 98px;
+    cursor: pointer;
+}
+
+/* Navbar Links */
+.dogs-navbar-middle-wrapper {
+    display: flex;
+    gap: 40px;
+}
+
+/* Individual Navbar Sections */
+.dogs-navbar-middle-section {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.dogs-navbar-middle-section li {
+    font-size: 1.1rem;
+    margin-right: 5px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.dogs-navbar-middle-section:hover li {
+    color: darkgreen;
+}
+
+/* Hover container ensures dropdown remains visible */
+.navbar-hover-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Menu */
+.navbar-hover-section {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px; /* Adjust width as needed */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+/* Show dropdown when hovering */
+.navbar-hover-container:hover .navbar-hover-section {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+/* Dropdown Menu Styling */
+.dropdown-menu-friendly {
+    position: relative;
+    top:0px;
+    left: -40px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+
+}
+
+
+
+
+.dropdown-menu-family {
+    position: relative;
+    top:0px;
+    left: 55px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+
+}
+
+
+
+
+.dropdown-menu-intelligent {
+    position: relative;
+    top:0px;
+    left: 199px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+.link-section {
+    color: white;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.link-section:hover {
+    background: green;
+}
+
+/* Sign In Link */
+.link-sgn-in {
+    position: relative;
+    left: -45px;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.link-sgn-in:hover {
+    color: seagreen;
+}
+
+/* Accessories Link */
+.link-accessories {
+    position: relative;
+    left: -80px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.link-accessories:hover {
+    color: lightgreen;
+}
+
+/* Right Section Icons */
+.dogs-right-wrapper {
+    display: flex;
+    gap: 45px;
+    position: relative;
+    left: -80px;
+}
+
+
+
+
+
+
+
+
+
+
+.cart-count {
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    position: relative;
+    top:-10px;
+    left: -50px;
+    margin:0 auto;
+  }
+
+
+  .cart-count span {
+    color:rgb(36, 171, 114)
+  }

@@ -1,0 +1,40 @@
+
+
+
+
+
+
+.logout-form-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.logout-form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 350px;
+}
+
+
+
+.logout-form-wrapper button {
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    background: black;
+    cursor: pointer;
+    padding:0.5em;
+    border-radius:10px
+}
+
+
+.logout-form-wrapper button:hover{
+    color: white;
+    background:seagreen
+
+
+}

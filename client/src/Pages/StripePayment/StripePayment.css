@@ -1,0 +1,55 @@
+.stripe-container {
+  padding: 20px;
+  font-family: "Raleway", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2em;
+  color: var(--dark-terminal-color);
+}
+
+.stripe-container main {
+  width: 480px;
+}
+
+.stripe-container a {
+  color: var(--accent-color);
+  font-weight: 900;
+}
+
+.stripe-container small {
+  font-size: 0.6em;
+}
+
+.stripe-container fieldset {
+  border: 1px solid #efefef;
+}
+
+
+
+
+
+
+
+  
+
+
+
+  @media screen and (max-width:420px) {
+
+    .stripe-container {
+      padding: 15px;
+      font-size: 1em;
+    }
+  
+    .stripe-container main {
+      width: 100%;
+    }
+  
+    .stripe-container h1 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+    
+    
+  }

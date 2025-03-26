@@ -1,0 +1,55 @@
+
+
+
+
+
+
+.reset-container {
+    width: 100%;
+    overflow: hidden;
+ 
+}
+
+
+
+.reset-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+
+
+.reset-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+   
+
+}
+
+
+.reset-form-wrapper input {
+    padding:1em;
+    width: 310px;
+    text-align: center;
+    margin:27px 0px
+}
+
+
+.reset-form-wrapper button {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    background: black;
+    color: white;
+    padding: 0.7em;
+    cursor: pointer;
+}

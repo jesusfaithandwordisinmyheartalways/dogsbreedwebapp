@@ -1,0 +1,214 @@
+
+
+
+
+
+
+/* Animation for login form */
+.login-form-container {
+    width: 100%;
+    overflow: hidden;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start from slightly below */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth fade-in and slide-up */
+}
+
+.login-form-container.show {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slide to the original position */
+}
+
+/* The rest of the styles remain the same as before */
+.login-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1500px;
+    height: 79vh;
+    position: relative;
+    top: -50px;
+}
+
+.login-form-wrapper h3 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.login-form-wrapper label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.login-form-wrapper input {
+    padding: 0.5em;
+    width: 310px;
+    margin: 10px 0px;
+}
+
+.login-form-wrapper button {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    background: black;
+    color: white;
+    padding: 0.7em;
+    position: relative;
+    top: 0;
+    left: 70px;
+    width: 210px;
+    cursor: pointer;
+}
+
+.login-form-wrapper button:focus {
+    background: darkgreen;
+    color: whitesmoke;
+}
+
+
+
+.login-form-wrapper button:hover {
+    background: green;
+    color: whitesmoke;
+}
+
+
+.login-form-wrapper input[type="email"] {
+    position: relative;
+    top:0px
+}
+
+
+
+.login-form-wrapper .login-email {
+    position: relative;
+    top:-17px
+}
+
+
+
+
+
+.register a {
+    text-decoration: none;
+    color: slategray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: -10px;
+    top: 40px;
+}
+
+
+.register a:hover {
+    color:blue
+}
+
+
+
+
+.security a {
+    text-decoration: none;
+    color: slategray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: 165px;
+    top: 18px;
+    font-size: 1.1rem;
+}
+
+
+.security a:hover {
+    color:blue;
+    font-size: 1.3rem;
+}
+
+
+
+
+
+
+
+
+.login-error-msg {
+    display: flex;
+    position: relative;
+    top:-10px;
+    align-items:center;
+    justify-content: center;
+    margin: 0 auto;
+    background:rgb(43, 69, 95);
+}
+
+
+
+
+.login-error-msg p {
+    color:white;
+    font-size: 0.9rem;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------For ToolTip & Eye Icon --------------------*/
+
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+ 
+}
+
+
+
+
+.password-icon {
+    display: flex; 
+    position: relative;
+    top:-39px;
+    left: 300px;
+    width: 25px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+.tooltip {
+    position: relative;
+    bottom: -20px;
+    right: 30px;
+    background: black;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    
+}
+
+
+.register-login-form input[type="email"] {
+    position: relative;
+    top:-19px
+}

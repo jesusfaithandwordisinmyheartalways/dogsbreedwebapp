@@ -1,0 +1,65 @@
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap');
+
+.ListOfBreeds-Container {
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.ListOfBreeds-Container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+.deals-by-pet-wrappper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    font-size: 1.5rem;
+    font-family: "Yrsa", serif;
+    font-optical-sizing: auto;
+}
+
+
+
+
+
+
+.ListOfBreeds-Wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 1000px;
+    gap:70px
+   
+ 
+
+}
+
+
+.ListOfBreeds-Wrapper img {
+    width:200px
+}
+
+.ListOfBreeds-Wrapper > div:hover {
+    
+
+}
+
+
+
+
+

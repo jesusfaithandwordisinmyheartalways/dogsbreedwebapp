@@ -1,0 +1,37 @@
+
+
+
+
+
+.footer-container {
+    width: 100%;
+    overflow: hidden;
+    background:navy;
+    position: relative;
+    bottom:0px;
+
+
+}
+
+
+
+
+.footer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 1000px;
+    font-size: 1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+   
+}
+
+
+
+
+.footer-wrapper p, a {
+    color:white
+}
+

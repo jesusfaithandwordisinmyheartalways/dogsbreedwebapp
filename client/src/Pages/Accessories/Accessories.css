@@ -1,0 +1,113 @@
+
+
+
+
+
+
+
+.accessories-container {
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.accessories-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+.accessories-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+
+.accessories-main-wrapper h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+
+
+}
+
+
+
+.accessories-wrapper img {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: all 0.5s ease-in-out;
+}
+
+/* Optional: Add hover effect */
+.accessories-wrapper img:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+
+.accessories-wrapper {
+    position: relative; /* This ensures sticky works inside the container */
+    
+}
+
+
+.sticky-image {
+    position: sticky;
+    top: 20px; /* The image will stick 20px from the top */
+    left: 20px; /* Optional: Adjust left positioning */
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: transform 0.3s ease-in-out;
+}
+
+.sticky-image:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+
+
+
+
+.accessories-wrapper-two {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1100px;
+    gap:99px
+}
+
+
+
+
+.accessories-wrapper-two img {
+    width: 145px;
+    object-fit: contain;
+}
+
+
+.sec {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.sec h3 {
+    font-size: 1rem;
+    font-family:'Times New Roman', Times, serif
+}

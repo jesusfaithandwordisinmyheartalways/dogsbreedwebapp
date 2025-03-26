@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+
+.order-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+.order-wrapper {
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    margin:0 auto;
+    max-width: 1500px;
+    padding: 3em;
+}
+
+
+
+
+.order-wrapper input {
+    padding:0.3em;
+    border-radius:10px;
+   
+}
+
+
+.user-order-form {
+    text-align: center;
+}
+
+
+.user-order-form button {
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    background: green;
+    cursor: pointer;
+    padding:0.5em;
+    border-radius:10px;
+    margin-top: 23px;
+}
+
+
+
+
+
+
+
+
+.right-section img {
+    width: 90px;
+    object-fit: contain;
+}
+
+
+.right-section p {
+    color:black;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+
+
+.order-quantity {
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    
+} 
+
+
+
+
+
+
+
+
+
+
+
+.middle-section {
+    position: relative;
+    top:-135px;
+    left: -90px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pay-button {
+    background: whitesmoke;
+    border:1px solid black;
+    color: blue;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin: 20px 0;
+}
+
+.pay-button:hover {
+    background: seagreen;
+}
+
+.pay-button:active {
+    transform: scale(0.98);
+}
