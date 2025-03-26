@@ -49,7 +49,7 @@ const ForgotPassword = () => {
           }
 
         try {
-            const response = await fetch('http://localhost:3001/reset/forgot', {
+            const response = await fetch('https://dogstoreserver.onrender.com/reset/forgot', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:JSON.stringify(forgotData)

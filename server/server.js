@@ -48,7 +48,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials:true,
-    origin: ['http://localhost:3000', 'http://localhost:3002']
+    origin: ['https://dogstoreclient.onrender.com']
 
 }))
 
@@ -123,7 +123,7 @@ app.get('/', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 'https://dogstoreclient.onrender.com'
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
 });

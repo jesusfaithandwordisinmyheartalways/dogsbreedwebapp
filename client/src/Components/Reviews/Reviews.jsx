@@ -77,7 +77,7 @@ const Reviews = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:3001/reviews/user-reviews", {
+            const response = await fetch("https://dogstoreserver.onrender.com/reviews/user-reviews", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newReview),

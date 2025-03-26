@@ -27,7 +27,7 @@ const NewPassword = () => {
         e.preventDefault()
         const newPasswordData = {password}
         try {
-            const response = await fetch('http://localhost:3001/confirm/newPassword', {
+            const response = await fetch('https://dogstoreserver.onrender.com/confirm/newPassword', {
                 method: 'POST',
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(newPasswordData)

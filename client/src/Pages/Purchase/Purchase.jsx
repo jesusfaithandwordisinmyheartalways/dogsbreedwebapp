@@ -145,7 +145,7 @@ const Purchase = () => {
 
 
   try {
-    const response = await fetch('http://localhost:3001/orders/purchase', {
+    const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
