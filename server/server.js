@@ -35,7 +35,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // For development, set secure: false. For production, set to true and use HTTPS
+    cookie: { 
+        secure: true,
+        sameSite: 'none'
+            } // For development, set secure: false. For production, set to true and use HTTPS
 }));
 
 
