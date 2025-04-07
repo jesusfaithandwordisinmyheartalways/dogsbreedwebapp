@@ -30,8 +30,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-<<<<<<< HEAD
-=======
 // Setup session
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -39,7 +37,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: true} // For development, set secure: false. For production, set to true and use HTTPS
 }));
->>>>>>> 4cf7099 (newfiles)
 
 
 
@@ -126,12 +123,8 @@ app.get('/', (req, res) => {
 
 
 
-<<<<<<< HEAD
-const PORT = process.env.PORT || 'https://dogstoreserver.onrender.com';
-=======
 
 const PORT = process.env.PORT || 'https://dogstoreserver.onrender.com'
->>>>>>> 4cf7099 (newfiles)
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
 });
