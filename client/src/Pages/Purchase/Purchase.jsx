@@ -169,7 +169,7 @@ for (let data of dogs_products) {
 
   try {
     const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('http://localhost:3001/orders/purchase', {
+    const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -200,7 +200,7 @@ for (let data of dogs_products) {
   const saveNewAddress = async () => {
     try {
       const token = document.cookie.split('=')[1];
-      const response = await fetch('http://localhost:3001/orders/purchase', {
+      const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ for (let data of dogs_products) {
  const deleteAddress = async (addressId) => {
   try {
       const token = document.cookie.split('=')[1];
-      const response = await fetch(`http://localhost:3001/orders/purchase/${addressId}`, {
+      const response = await fetch(`https://dogstoreserver.onrender.com/orders/purchase/${addressId}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` },
           credentials: 'include'
@@ -270,7 +270,7 @@ for (let data of dogs_products) {
     const fetchSavedAddress = async () => {
         try {
             const token = document.cookie.split('=')[1];
-            const response = await fetch('http://localhost:3001/orders/purchase', {
+            const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` },
                 credentials: 'include'
@@ -304,7 +304,7 @@ for (let data of dogs_products) {
     e.preventDefault();
     const token = document.cookie.split('=')[1];
     try {
-        const response = await fetch('http://localhost:3001/orders/purchase', {
+        const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
