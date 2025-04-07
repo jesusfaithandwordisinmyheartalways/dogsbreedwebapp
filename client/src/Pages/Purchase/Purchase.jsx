@@ -11,6 +11,15 @@ import { dogs_products } from '../../Components/ArrayData/adoptdogs';
 
 
 
+// ✅ Add this at the top
+const getCookie = (name) => {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+};
+
+
+
+
 
 const Purchase = () => {
     const  navigate = useNavigate()
@@ -168,10 +177,11 @@ for (let data of dogs_products) {
 
 
   try {
-    const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
+    const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
     const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json',
+      headers: {
+         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
        },
       credentials: 'include',
@@ -199,7 +209,7 @@ for (let data of dogs_products) {
 //PUT Request to Save/Update Address
   const saveNewAddress = async () => {
     try {
-      const token = document.cookie.split('=')[1];
+      const token = getCookie('authToken'); 
       const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
         method: 'PUT',
         headers: {
@@ -224,7 +234,7 @@ for (let data of dogs_products) {
  // Handle Delete Address
  const deleteAddress = async (addressId) => {
   try {
-      const token = document.cookie.split('=')[1];
+    const token = getCookie('authToken'); 
       const response = await fetch(`https://dogstoreserver.onrender.com/orders/purchase/${addressId}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` },
@@ -269,7 +279,7 @@ for (let data of dogs_products) {
    useEffect(() => {
     const fetchSavedAddress = async () => {
         try {
-            const token = document.cookie.split('=')[1];
+            const token = getCookie('authToken'); 
             const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` },
@@ -302,8 +312,8 @@ for (let data of dogs_products) {
    // Submit Edited Address
    const submitEdit = async (e) => {
     e.preventDefault();
-    const token = document.cookie.split('=')[1];
-    try {
+       try {
+       const token = getCookie('authToken'); 
         const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
             method: 'PUT',
             headers: {

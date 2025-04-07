@@ -35,7 +35,11 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true} // For development, set secure: false. For production, set to true and use HTTPS
+    cookie: { 
+      secure: true,
+      httpOnly: true,
+       sameSite: 'none'
+    } 
 }));
 
 
@@ -43,11 +47,21 @@ app.use(session({
 app.use(cookieParser());
 
 app.use(cors({
+  origin: 'https://dogstoreclient.onrender.com' ,
     credentials:true,
-    origin: 'https://dogstoreclient.onrender.com' 
+  
 
 }))
 
+
+// Add necessary headers for all responses
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://dogstoreclient.onrender.com");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 
 
