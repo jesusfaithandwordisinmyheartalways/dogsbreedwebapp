@@ -47,7 +47,7 @@ const Accessories = () => {
         <div ref={containerRef} className={`accessories-container ${isVisible ? "fade-in" : ""}`} >
 
             <div className='accessories-main-wrapper'>
-                <div><h3>Accessories for Dogs</h3></div>
+                <div><h3>Accessories for Dogs Lovers </h3></div>
             </div>
 
 
