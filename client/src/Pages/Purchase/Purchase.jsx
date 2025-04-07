@@ -154,9 +154,7 @@ for (let data of dogs_products) {
 
   const userOrderSubmit = async (e) => {
     e.preventDefault()
-    if(orderForm()) {
-      console.log("Form submitted successfully!", formData);
-    }
+    if (!orderForm()) return;
 
     const orderData = {
       name: `${formData.firstName} ${formData.lastName}`, // Combine first & last name
@@ -190,10 +188,9 @@ for (let data of dogs_products) {
 
   const result = await response.json();
   if(response.ok) {
-      await saveNewAddress(); 
      setOriginalCartItems({});  // Reset cart after order is placed
      setUserOrders(prevOrders => [...prevOrders, orderData])// Update the global userOrders state from DogStoreProvider
-     setTimeout(() => { navigate('/order-placed' )}) // Navigate to OrderPlaced and pass data
+     setTimeout(() => { navigate('/order-placed', 300)}) // Navigate to OrderPlaced and pass data
   } else {
       setErrorMessage(result.message)
   }
