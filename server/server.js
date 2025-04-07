@@ -30,16 +30,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-// Setup session
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { 
-        secure: true,
-        sameSite: 'none'
-            } // For development, set secure: false. For production, set to true and use HTTPS
-}));
 
 
 
