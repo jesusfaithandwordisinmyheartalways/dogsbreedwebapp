@@ -30,17 +30,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-// Setup session
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { 
-      secure: true,
-      httpOnly: true,
-       sameSite: 'none'
-    } 
-}));
 
 
 
@@ -53,15 +42,6 @@ app.use(cors({
 
 }))
 
-
-// Add necessary headers for all responses
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://dogstoreclient.onrender.com");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 
 
 
