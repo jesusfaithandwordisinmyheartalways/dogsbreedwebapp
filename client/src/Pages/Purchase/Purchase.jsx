@@ -190,7 +190,7 @@ for (let data of dogs_products) {
   if(response.ok) {
      setOriginalCartItems({});  // Reset cart after order is placed
      setUserOrders(prevOrders => [...prevOrders, orderData])// Update the global userOrders state from DogStoreProvider
-     setTimeout(() => { navigate('/order-placed', 300)}) // Navigate to OrderPlaced and pass data
+      navigate('/order-placed') // Navigate to OrderPlaced and pass data
   } else {
       setErrorMessage(result.message)
   }
