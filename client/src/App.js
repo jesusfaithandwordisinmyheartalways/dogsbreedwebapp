@@ -20,6 +20,8 @@ import Product from "./Pages/Product/Product";
 import Purchase from "./Pages/Purchase/Purchase";
 import OrderPlaced from "./Pages/OrderPlaced/OrderPlaced";
 import StripePayment from "./Pages/StripePayment/StripePayment";
+import Category from "./Pages/Category/Category";
+import AuthUserOrders from "./Pages/AuthUserOrders/AuthUserOrders";
 
 
 
@@ -189,6 +191,7 @@ useEffect(() => {
     <Route path='/accessories' element={<Accessories />}/>
     <Route path='/register' element={<Register />}/>
     <Route path='/cart' element={<Cart />}/>
+    <Route path='/category' element={<Category />}/>
     <Route path="/security" element={<ForgotPassword />}/>
     <Route path="/verify" element={<ResetCode />}/>
     <Route path="/confirm" element={<NewPassword />}/>
@@ -196,6 +199,9 @@ useEffect(() => {
     <Route path="/purchase" element={<Purchase />}/>
     <Route path="/order-placed" element={<OrderPlaced />}/>
     <Route path="/payment" element={<StripePayment />}/>
+    <Route path="/userOrders" element={<AuthUserOrders />}/>
+
+
 
 
 
@@ -210,7 +216,7 @@ useEffect(() => {
 
       {/* ChevronUp button */}
   {userScroll && (
-    <div><button  className="scroll-to-top"  onClick={scrollToTop}>  <ChevronUp size={24} /> </button></div>
+    <div><button  className="scroll-to-top" onClick={scrollToTop}>  <ChevronUp size={31} /> Back To Top </button></div>
   )}
 
 

@@ -17,11 +17,7 @@ import reviewRoutes from './routes/reviewsRoute.js'
 import orderRoutes from './routes/orderlRoute.js'
 import stripeRoutes from './routes/stripeRoute.js'
 import adminLoginRoutes from './routes/adminRoute.js'
-import fetchOrderRoutes from './routes/fetchOrders.js'
 import connectMongoDB from './configuration/mongodb.js'
-import http  from 'http';
-import fs from 'fs';
-
 
 
 
@@ -48,7 +44,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials:true,
-    origin: ['https://dogstoreclient.onrender.com']
+    origin: 'http://localhost:3000' 
 
 }))
 
@@ -69,13 +65,18 @@ app.use('/exit', logoutRoutes)
 app.use('/reviews', reviewRoutes)
 app.use('/stripe', stripeRoutes)
 app.use('/orders', orderRoutes)
-app.use('/orders', fetchOrderRoutes)
 app.use('/admin', adminLoginRoutes)
 
 
 
 
 connectMongoDB()
+
+
+
+
+
+
 
 
 
@@ -123,7 +124,7 @@ app.get('/', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 'https://dogstoreclient.onrender.com'
+const PORT = process.env.PORT || '3001'
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
 });

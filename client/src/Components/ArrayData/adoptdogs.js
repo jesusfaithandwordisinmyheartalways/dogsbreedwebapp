@@ -53,6 +53,12 @@ import Poodles_Adopt_Image from '../Images/Poodles_image.png'
 import Poodles_Adopt_Gif from '../Images/Poodlesgif.webp'
 
 
+import dog_shampoo from '../Images/dog shampoo-and-conditioner.png'
+import dog_shampoo_toothbrush from '../Images/dog-toothbrush-toothpaste-kit.jpg'
+import dog_ear_cleaner from '../Images/dog-Ear-Cleaner.png'
+
+
+
 
 
 
@@ -71,6 +77,8 @@ export const dogs_products = [
         sizes: ['4lb', '12lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0019057U-M040',
+        brand: ['Doberman'],
+        discount_percentage: ['365%']
     },
 
     
@@ -84,9 +92,12 @@ export const dogs_products = [
         old_price: 150.00,
         category: 'White Dog',
         subCategory: 'Intelligent Dog',
-        sizes: ['4lb', '12lb', '24lb'],
+        sizes: ['4lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0115432U-M110',
+        brand: ['Finnish'],
+        discount_percentage: ['368%']
+
         
     },
 
@@ -104,6 +115,9 @@ export const dogs_products = [
         sizes: ['4lb', '12lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['FrenchBull'],
+        discount_percentage: ['570%']
+
         
     },
 
@@ -121,6 +135,9 @@ export const dogs_products = [
         sizes: ['4lb', '12lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['GermanShepherd'],
+        discount_percentage: ['570%']
+
         
     },
 
@@ -135,9 +152,12 @@ export const dogs_products = [
         old_price: 150.00,
         category: 'Light Brown Dog',
         subCategory: 'Family Dog',
-        sizes: ['4lb', '12lb', '24lb'],
+        sizes: ['27lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['Golden Retriever'],
+        discount_percentage: ['570%']
+
         
     },
 
@@ -153,9 +173,13 @@ export const dogs_products = [
         old_price: 150.00,
         category: 'Light Brown Dog',
         subCategory: 'Family Dog',
-        sizes: ['4lb', '12lb', '24lb'],
+        sizes: ['4lb', '12lb','31lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['Labrador'],
+        discount_percentage: ['540%']
+
+
         
     },
 
@@ -176,6 +200,9 @@ export const dogs_products = [
         sizes: ['4lb', '12lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['Corgi'],
+        discount_percentage: ['540%']
+
         
     },
 
@@ -193,8 +220,64 @@ export const dogs_products = [
         sizes: ['4lb', '12lb', '24lb'],
         itemNum: 'ASD1234',
         SKU_NUM: 'SL0098765U-M108',
+        brand: ['Poodle'],
+        discount_percentage: ['631%']
+
         
     },
 
+
+    {
+        id:  "aaaak",
+        name: 'Dog shampoo',
+        description: [' dark shampoo for hair'],
+        image: [dog_shampoo  ],
+        hoverImage: dog_shampoo,
+        new_price: 40.00,
+        old_price: 10.00,
+        category: 'Dog Shampoo',
+        subCategory: 'Dog Shampoo', 
+        sizes: ['small', ' medium', ' large'],
+        itemNum: 'ASD1238',
+        SKU_NUM: 'SL0098765U-M108',
+        
+    },
+
+
+
+    {
+        id:  "aaaaj",
+        name: 'Dog Toothbrush',
+        description: [' dog toothbrush for clean and nice smile'],
+        image: [dog_shampoo_toothbrush ],
+        hoverImage: dog_shampoo_toothbrush,
+        new_price: 50.00,
+        old_price: 10.00,
+        category: 'Dog Toothbrush',
+        subCategory: 'Dog Toothbrush',
+        sizes: ['small', ' medium', ' large'],
+        itemNum: 'ASD1278',
+        SKU_NUM: 'SL0098765U-M108',
+        
+    },
+
+
+
+    {
+        id:  "aaaaz",
+        name: 'Dog Ear Cleaner',
+        description: ['  dog air cleaner for ears '],
+        image: [dog_ear_cleaner ],
+        hoverImage: dog_ear_cleaner,
+        new_price: 90.00,
+        old_price: 10.00,
+        category: 'Dog Ear Cleaner',
+        subCategory: 'Dog Ear Cleaner',
+        sizes: ['small', ' medium', ' large'],
+        itemNum: 'ASD1299',
+        SKU_NUM: 'SL0098765U-M108',
+
+        
+    },
 
 ]

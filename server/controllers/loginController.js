@@ -3,7 +3,6 @@
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt'
-import LoginUser from '../models/loginModel.js';
 import RegisterUser from '../models/registerModel.js';
 
 
@@ -17,10 +16,9 @@ const LOCK_TIME = 30 * 60 * 1000; // 30 minutes
 
 
 const UserLoginFunction = async (req, res) => {
-    const { loginUsername, loginPassword, loginEmail } = req.body;
-  
-
     try {
+        const { loginUsername, loginPassword, loginEmail } = req.body;
+
         const user = await RegisterUser.findOne({ $or : [{ username: loginUsername }, { email: loginEmail }] });
 
         if (!user) {
@@ -65,10 +63,11 @@ const UserLoginFunction = async (req, res) => {
         // Set token in HTTP-only cookie
         res.cookie('authToken', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production',  // This will only work if you're in production mode (https)
             maxAge: 365 * 24 * 60 * 60 * 1000,  // 30 days
             sameSite: 'Strict',
         });
+
 
         console.log("User Email:", loginEmail);
         console.log("Entered Password:", loginPassword);

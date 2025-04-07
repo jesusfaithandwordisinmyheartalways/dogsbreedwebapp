@@ -6,9 +6,23 @@ import React, { useState, useRef, useEffect } from "react";
 import { featured_deals } from "../ArrayData/deals";
 import "./FeaturedDeals.css";
 
+
+
+
+
+
+
 const FeaturedDeals = () => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const scrollRef = useRef(null);
+
+
+
+
+
 
   useEffect(() => {
       const observer = new IntersectionObserver(
@@ -34,6 +48,21 @@ const FeaturedDeals = () => {
 
 
 
+   // Handle touch events for mobile scrolling
+   const userTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const userTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += touchStartX.current - touchEndX.current;
+      touchStartX.current = touchEndX.current; // Update start position for smooth scrolling
+    }
+  };
+
+
+
   return (
     <>
       <div  ref={containerRef} className={`FeaturedDeals-Container ${isVisible ? "fade-in" : ""}`}>
@@ -51,7 +80,7 @@ const FeaturedDeals = () => {
 
 
           {/* Horizontal Scroll Gallery */}
-          <div className="scroll-container">
+          <div onTouchStart={userTouchStart} onTouchMove={userTouchMove} ref={scrollRef} className="scroll-container">
             <img src={featured_deals.dog_promotion} alt="Dog Promotion" />
             <img src={featured_deals.dog_promotion_two} alt="Dog Promotion Two" />
             <img src={featured_deals.dog_promotion_three} alt="Dog Promotion Three" />

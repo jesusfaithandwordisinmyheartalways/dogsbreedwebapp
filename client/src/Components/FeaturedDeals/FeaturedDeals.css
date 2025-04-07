@@ -55,3 +55,20 @@ h3 {
     background-color: white;
     border-radius: 8px;
 }
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:420px) {
+    .home-dog-container {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        touch-action: pan-x;
+    }
+}

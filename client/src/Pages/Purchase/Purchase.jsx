@@ -16,8 +16,17 @@ const Purchase = () => {
     const  navigate = useNavigate()
     const currentInput = useRef();
     const [errorMessage, setErrorMessage] = useState({});
+    const [savedAddress, setSavedAddress] = useState([]);
+    const [prevAddress, setPrevAddress] = useState(null)
+    const [editAddress, setEditAddress] = useState([])
+    const [removeAddress, setRemoveAddress] = useState([])
+    const [editAddressFormVisible, setEditAddressFormVisible] = useState(false)
+
+
+
+
     const { orderItems, setOrderItems,  selectedSizes, TotalCartAmountItems, 
-      TotalCartAmount, setOriginalCartItems} = useContext(DogStoreContext)
+      TotalCartAmount, setOriginalCartItems, userOrders, setUserOrders} = useContext(DogStoreContext)
 
 
 
@@ -54,24 +63,30 @@ const Purchase = () => {
     const orderPickUpOptions =  JSON.parse(localStorage.getItem("selectedPickupOption")) || "Not Selected";
 
 
-    let userOrders = []
-    for(let data of dogs_products) {
-        let productId = String(data.id)
-        if(orderCartItems[productId] > 0) {
-            userOrders.push({
-                id: productId,
-                name: data.name || 'name not found',
-                image: data.image[0] || '',
-                size: Array.isArray(orderSelectedSizes[productId]) 
-                      ? orderSelectedSizes[productId].join(', ') 
-                      : orderSelectedSizes[productId] || 'not selected',
-                pickupOption: orderPickUpOptions,
-                quantity: orderCartItems[productId]
-            })
-        }
+    let userOrders = [];
+
+for (let data of dogs_products) {
+    let productId = String(data.id);
+    if (orderCartItems[productId] > 0) {
+        const selectedSize = selectedSizes[productId] || orderSelectedSizes[productId] || [];
+        const formattedSize = Array.isArray(selectedSize) ? selectedSize.join(', ') : selectedSize;
+
+        userOrders.push({
+            id: productId,
+            dogName: data.name || 'name not found',
+            image: data.image[0] || '',
+            size: formattedSize || 'not selected',
+            pickupOption: orderPickUpOptions,
+            quantity: orderCartItems[productId]
+        });
     }
-        setOrderItems(userOrders)
-        
+}
+    setOrderItems(userOrders);    
+    setUserOrders(userOrders);// Add this line
+
+     
+    
+
   }, [])
 
 
@@ -122,6 +137,12 @@ const Purchase = () => {
 
 
 
+  
+
+
+
+
+
   const userOrderSubmit = async (e) => {
     e.preventDefault()
     if(orderForm()) {
@@ -144,18 +165,25 @@ const Purchase = () => {
   };
 
 
+
+
   try {
-    const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
+    const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
+    const response = await fetch('http://localhost:3001/orders/purchase', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+       },
       credentials: 'include',
       body: JSON.stringify(orderData),
   });
 
   const result = await response.json();
   if(response.ok) {
+      await saveNewAddress(); 
      setOriginalCartItems({});  // Reset cart after order is placed
-     setTimeout(() => { navigate('/order-placed', {orders: orderData})}) // Navigate to OrderPlaced and pass data
+     setUserOrders(prevOrders => [...prevOrders, orderData])// Update the global userOrders state from DogStoreProvider
+     setTimeout(() => { navigate('/order-placed' )}) // Navigate to OrderPlaced and pass data
   } else {
       setErrorMessage(result.message)
   }
@@ -165,6 +193,145 @@ const Purchase = () => {
   }
 
   }
+
+
+
+//PUT Request to Save/Update Address
+  const saveNewAddress = async () => {
+    try {
+      const token = document.cookie.split('=')[1];
+      const response = await fetch('http://localhost:3001/orders/purchase', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        credentials: 'include',
+        body: JSON.stringify(formData)
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        setSavedAddress(data.addresses);
+      }
+    } catch (error) {
+      console.error("Failed to save new address", error);
+    }
+  };
+
+
+
+ // Handle Delete Address
+ const deleteAddress = async (addressId) => {
+  try {
+      const token = document.cookie.split('=')[1];
+      const response = await fetch(`http://localhost:3001/orders/purchase/${addressId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` },
+          credentials: 'include'
+      });
+
+      if (response.ok) {
+          setSavedAddress(prev => prev.filter(addr => addr._id !== addressId));
+      }
+  } catch (error) {
+      console.error("Delete failed", error);
+  }
+};
+
+
+
+
+
+
+
+
+
+  //Handler for Selecting Saved Address
+
+    const userSelectedAddress  = (address) => {
+        setPrevAddress(address)
+        setFormData({
+          firstName: address.firstName || '',
+          lastName: address.lastName || '',
+          email: address.email || '',
+          street: address.street,
+          city: address.city,
+          state: address.state,
+          zipcode: address.zipcode,
+          country: address.country,
+          phone: address.phone || ''
+        })
+    }
+
+
+   // Fetch Saved Addresses (Only last 3)
+   useEffect(() => {
+    const fetchSavedAddress = async () => {
+        try {
+            const token = document.cookie.split('=')[1];
+            const response = await fetch('http://localhost:3001/orders/purchase', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${token}` },
+                credentials: 'include'
+            });
+            const data = await response.json();
+            if (response.ok && data.addresses) {
+                setSavedAddress(data.addresses);
+            }
+        } catch (error) {
+            console.error("Failed to fetch saved addresses", error);
+        }
+    };
+    fetchSavedAddress();
+}, []);
+  
+
+
+
+
+
+
+    const userEdit = (address) => {
+      setFormData({...address})
+      setEditAddressFormVisible(true)
+    }
+
+
+
+   // Submit Edited Address
+   const submitEdit = async (e) => {
+    e.preventDefault();
+    const token = document.cookie.split('=')[1];
+    try {
+        const response = await fetch('http://localhost:3001/orders/purchase', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include',
+            body: JSON.stringify({ address: formData })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Address updated.");
+            setSavedAddress(data.addresses);
+            setEditAddressFormVisible(false);
+        }
+    } catch (error) {
+        console.error("Error updating address", error);
+    }
+};
+    
+
+
+
+
+
+
+
 
 
 
@@ -192,34 +359,29 @@ const Purchase = () => {
                   <div>
                     <label>First Name:</label>
                     <input ref={currentInput} type="text" name="firstName" value={formData.firstName} onChange={userChange} required />
-                        {errorMessage.firstName &&  <p>{errorMessage.firstName}</p>}
                   </div>
 
                   <div>
                     <label>Last Name:</label>
                     <input type="text" name="lastName" value={formData.lastName} onChange={userChange} required />
-                        {errorMessage.lastName &&  <p>{errorMessage.lastName}</p>}
                   </div>
 
 
                   <div>
                     <label>Email:</label>
                     <input type="email" name="email" value={formData.email} onChange={userChange} required />
-                        {errorMessage.email &&  <p>{errorMessage.email}</p>}
                   </div>
 
 
                   <div>
                     <label>Street:</label>
                     <input type="text" name="street" value={formData.street} onChange={userChange} required />
-                        {errorMessage.street &&  <p>{errorMessage.street}</p>}
                   </div>
 
 
                   <div>
                     <label>City:</label>
                     <input type="text" name="city" value={formData.city} onChange={userChange} required />
-                        {errorMessage.city &&  <p>{errorMessage.city}</p>}
                   </div>
 
 
@@ -227,7 +389,6 @@ const Purchase = () => {
                   <div>
                     <label>State:</label>
                     <input type="text" name="state" value={formData.state} onChange={userChange} required />
-                        {errorMessage.state &&  <p>{errorMessage.state}</p>}
                   </div>
 
 
@@ -235,7 +396,6 @@ const Purchase = () => {
                   <div>
                     <label>Zipcode:</label>
                     <input type="text" name="zipcode" value={formData.zipcode} onChange={userChange} required />
-                        {errorMessage.zipcode &&  <p>{errorMessage.zipcode}</p>}
                   </div>
 
 
@@ -243,14 +403,12 @@ const Purchase = () => {
                   <div>
                     <label>Country:</label>
                     <input type="text" name="country" value={formData.country} onChange={userChange} required />
-                        {errorMessage.country &&  <p>{errorMessage.country}</p>}
                   </div>
 
 
                   <div>
                     <label>Phone:</label>
                     <input type="tel" name="phone" value={formData.phone} onChange={userChange} required />
-                        {errorMessage.phone &&  <p>{errorMessage.phone}</p>}
                   </div>
 
 
@@ -274,16 +432,11 @@ const Purchase = () => {
                       return (
                         <div key={index.id} className="order-item">
                             <div><img src={data.image} alt=''></img></div>
-                             <div className='purchase-size'>
-                                Size:{selectedSizes[data.id]?.map((size, index) => (
-                                 <span key={index}> {size} </span>
-                                 ))} 
-
-                             </div>
+                             <div className='purchase-size'> Size: {data.size}</div>
                             <div className='order-quantity'><p> Quantity: {data.quantity}</p></div>
-                            <div className='order-name'><p>Breed: {data.name}</p></div>
+                            <div className='order-name'><p>Breed: {data.dogName}</p></div>
                             <div className='order-pickup'>
-                               <span>{data.pickupOption}</span> 
+                               <span>PickupOption: {data.pickupOption}</span> 
 
                             </div>
 
@@ -292,12 +445,6 @@ const Purchase = () => {
 
                     })}
 
-
-                  
-
-                
-
-                
 
                   </div>
 
@@ -311,12 +458,59 @@ const Purchase = () => {
 
 
 
-           <div className='middle-section'>
-
-         
 
 
-           </div>
+                {/*----------ADD CODE FOR THE FORM  to review all the user  Saved Addresses */}
+
+                        <div className='display-saved-address-wrapper'>
+                          <div> <h3>Previous Addresses</h3></div>
+
+                          <div className="previous-addresses-wrapper">
+                          {savedAddress.length > 0 ? (
+                        savedAddress.map((address, index) => (
+                            <div key={index} className="saved-address">
+                                <p>{address.street}, {address.city}, {address.state}, {address.zipcode}, {address.country}</p>
+                                <button onClick={() => userSelectedAddress(address)}>Select</button>
+                                <button onClick={() => userEdit(address)}>Edit</button>
+                                <button onClick={() => deleteAddress(address._id)}>Remove</button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No saved addresses available.</p>
+                    )}
+                </div>
+                         
+
+
+
+                        </div>
+                              
+                              
+                              
+                              
+                              
+                              {/*----------ADD CODE FOR THE FORM  for the user to edit their Addresses and update it in the DOM as the new Address */}
+
+                              {editAddressFormVisible && (
+                              <div className="edit-address-form">
+                                  <h3>Edit Address</h3>
+                                  <form onSubmit={submitEdit}>
+                                      <div>
+                                          <label>Street:</label>
+                                          <input type="text" name="street" value={formData.street} onChange={(e) => setFormData({ ...formData, street: e.target.value })} />
+                                      </div>
+                                      <div>
+                                          <label>City:</label>
+                                          <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+                                      </div>
+                                      {/* Add other fields as needed */}
+                                      <button type="submit">Save Changes</button>
+                                  </form>
+                              </div>
+                          )}
+
+
+
 
 
 
@@ -342,7 +536,7 @@ const Purchase = () => {
                   <div>
                       <div> <h3>Express Payment</h3></div>
                       <div>
-                      <button onClick={() => navigate('/payment')} className='pay-button'>Proceed to Payment</button>
+                      <button onClick={() => navigate('/payment')} className='pay-button'>Pay with Stripe Payment?</button>
 
                       </div>
                   </div>

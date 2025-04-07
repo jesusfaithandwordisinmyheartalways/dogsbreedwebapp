@@ -2,7 +2,7 @@
 
 
 
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { useLocation, useNavigate, } from "react-router-dom";
 import { dogs_products } from '../Components/ArrayData/adoptdogs';
 
@@ -54,6 +54,7 @@ const DogStoreProvider = ({ children }) => {
     const [buttonOptions, setButtonOptions] = useState(null);
     const location = useLocation()
     const navigate = useNavigate();
+    const [userOrders, setUserOrders] = useState([])
 
 
 
@@ -227,7 +228,7 @@ const DogStoreContextValue = { count, setUserCount, search,  setSearch, showSear
    selectedSizes, setSelectedSizes, 
  updateSelectedSize, updateLocalStorage,  originalCartItems,
  setOriginalCartItems, TotalCartAmountItems, TotalCartAmount, quantityIncrease, quantityDecrease,
- AddCartItems, RemoveCartItems , orderItems, setOrderItems,
+ AddCartItems, RemoveCartItems , orderItems, setOrderItems, userOrders, setUserOrders,
 CheckoutOrderItems, buttonOptions, 
  setButtonOptions, }
 

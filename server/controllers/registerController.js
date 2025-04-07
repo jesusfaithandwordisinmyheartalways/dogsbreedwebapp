@@ -58,6 +58,12 @@ const UserRegisterFunction = async (req, res) => {
         const newUser = new RegisterUser({ name, lastName, username, email, password: hashedPassword });
         await newUser.save();
  
+        
+        console.log('user name :' , name);
+        console.log('user last name :' , lastName)
+        console.log('user username :' , username)
+        console.log('user password :' , password)
+        console.log('user email :' , email)
         return res.status(201).json({ success: true, message: 'User Registration successful' });
     } catch (error) {
         console.error("Registration Error:", error);

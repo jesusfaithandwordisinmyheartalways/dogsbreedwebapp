@@ -1,205 +1,180 @@
 
 
 
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import './AuthNavbar.css'
 import { Link } from "react-router-dom";
 import { Search, ShoppingCart, ChevronUp, ChevronDown } from 'lucide-react'; 
 import { dog_logo } from "../ArrayData/logo.js";
 import { useNavigate } from "react-router-dom";
+import { DogStoreContext } from '../../Context/DogStoreProvider.jsx';
 
 
 
 
-
-const  AuthNavbar = ({ user, userLogout}) => {
+const AuthNavbar = ({ user, userLogout }) => {
     const [search, setSearch] = useState(false);
-      const [stickyNavbar, setStickyNavbar] = useState(false);
-      const [navbarTransition, setNavbarTransition] = useState(false);
-      const [click, setClick] = useState(null) // Track active section
-      const [windowFaded, setWindowFaded] = useState(false)// Track background fade
-      const  navigate = useNavigate()
-      
-
-
-
-       // Immediately show navbar (without setTimeout)
-          useEffect(() => {
-              setNavbarTransition(true);
-          }, []);
-      
-          const navbarScroll = () => {
-              if (window.scrollY > 20) {
-                  setStickyNavbar(true);
-              } else {
-                  setStickyNavbar(false);
-              }
-          };
-      
-          useEffect(() => {
-              window.addEventListener('scroll', navbarScroll);
-              return () => {
-                  window.removeEventListener('scroll', navbarScroll);
-              };
-          }, []);
-      
-      
-      
-      
-      
-              // Toggle section visibility
-          const navbarHoverSectionDisplay = (hoverOver) => {
-              setClick(( data) => (data === hoverOver ? null : hoverOver))
-              setWindowFaded(true); // Ensure background fade effect appears
-      
-          }
-      
-      
-      
-      
-          useEffect(() => {
-              const documentCLickedOutsideWindow = (event) => {
-                  if(!event.target.closest(".auth-dogs-navbar-middle-wrapper, .auth-navbar-hover-section")) {
-                      setClick(null)
-                      setWindowFaded(false)
-                    }
-                 };
-                    document.addEventListener('click', documentCLickedOutsideWindow)
-                  return () => {
-                      document.removeEventListener('click', documentCLickedOutsideWindow)
-                  }
-           }, [])
-          
-      
-      
-
-
-
-  return (
-   <>
-   
-   {!search && (
-    <div className={`auth-dog-navbar-container ${navbarTransition ? "show" : ""} ${stickyNavbar ? "visible" : ""} ${windowFaded ? "faded-background" : ""}`} >
-        <div className="auth-dog-navbar-wrapper">
-            <div onClick={() => navigate('/')}><img src={dog_logo.dog_navbar_logo} alt="" /></div>
-
-            <Link to="/logout" className="auth-link-sgn-in">
-                <div><li>Log Out</li></div>
-            </Link>
-
-
-            <div className="auth-dogs-navbar-middle-wrapper">
-                <div className="auth-dogs-navbar-middle-section auth-friendly" 
-                    onClick={() => navbarHoverSectionDisplay('friendly')} >
-                    <div className="auth-friendly"><li>Friendly</li></div>
-                    <div>{click === 'friendly' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
-                </div>
-
-                <div className="auth-dogs-navbar-middle-section auth-family" 
-                    onClick={() => navbarHoverSectionDisplay('family')} >
-                    <div className="auth-family"><li>Family</li></div>
-                    <div>{click === 'family' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
-                </div>
-
-                <div className="auth-dogs-navbar-middle-section auth-intelligent" 
-                    onClick={() => navbarHoverSectionDisplay('intelligent')} > 
-                    <div className="auth-intelligent"><li>Intelligent</li></div>
-                    <div>{click === 'intelligent' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
-                </div>
-
-
-                <div>
-                  <Link to="/accessories" className="auth-link-accessories"><div>Accessories</div></Link>
-                  </div>
-
-
-                <div className="auth-dogs-navbar-middle-section auth-user"
-                  onClick={() => navbarHoverSectionDisplay('authuser')} >
-                 <div className="auth-user-text"><li> Welcome: {user?.firstName || user?.name || "User"}  </li></div>
-                 <div >{click === 'authuser' ? <ChevronUp size={18} /> : <ChevronDown  size={18}/> }</div>
-            </div>
+    const [stickyNavbar, setStickyNavbar] = useState(false);
+    const [navbarTransition, setNavbarTransition] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);  // For active hover section
+    const [windowFaded, setWindowFaded] = useState(false); // Track background fade
+    const navigate = useNavigate();
+    const { TotalCartAmountItems } = useContext(DogStoreContext)
 
 
 
 
+    // Immediately show navbar (without setTimeout)
+    useEffect(() => {
+        setNavbarTransition(true);
+    }, []);
 
+    const navbarScroll = () => {
+        if (window.scrollY > 20) {
+            setStickyNavbar(true); // Make navbar sticky
+        } else {
+            setStickyNavbar(false); // Revert to normal position
+        }
+    };
 
-            </div>
-
-           
-            
-            
-
-
-          
-
-
-
-
-
-
-
-            <div className="auth-dogs-right-wrapper">
-                <Link to="/cart" >
-                    <div><ShoppingCart size={31}  /></div>
-                </Link>
-            </div>
-
-        </div>
+    useEffect(() => {
+        window.addEventListener('scroll', navbarScroll);
+        return () => {
+            window.removeEventListener('scroll', navbarScroll);
+        };
+    }, []);
 
 
 
 
+    // Handle hover for dropdown menus
+    const handleMouseEnter = (section) => {
+        setActiveDropdown(section);
+        setWindowFaded(true); // Ensure background fade effect
+    };
 
-        <div className="auth-navbar-hover-section">
-            <div className={`auth-dogs-navbar-links-hover-one ${click === "friendly" ? "show" : "hide"}`} >
-                <Link className="auth-link-section" ><div>Doberman Pinschers</div></Link>
-                <Link className="auth-link-section" ><div>Poodles</div></Link>
-                <Link className="auth-link-section"><div>Lapphunds</div></Link>
-            </div>
-
-            <div className={`auth-dogs-navbar-links-hover-two ${click === "family" ? "show" : "hide"}`} >
-                <Link className="auth-link-section" ><div>Golden Retrievers</div></Link>
-                <Link className="auth-link-section" ><div>Labrador Retrievers</div></Link>
-                <Link className="auth-link-section"><div>German Shepherds</div></Link>
-            </div>
-
-            <div className={`auth-dogs-navbar-links-hover-three ${click === "intelligent" ? "show" : "hide"}`} >
-                <Link className="auth-link-section" ><div>Poodles</div></Link>
-                <Link className="auth-link-section" ><div>French Bulldogs</div></Link>
-                <Link className="auth-link-section"><div>Finnish Lapphunds</div></Link>
-            </div>
-
-
-            <div className={`auth-dogs-navbar-links-hover-four ${click === "authuser" ? "show" : "hide"}`} >
-                <Link to="/orders" className="auth-link-section-auth-user" ><div>Orders</div></Link>
-                <Link to="/update-profile" className="auth-link-section-auth-user" ><div>Update Profile</div></Link>
-                <Link to="/logout" className="auth-link-section-auth-user" ><div>Logout</div></Link>
-            </div>
+    const handleMouseLeave = () => {
+        setActiveDropdown(null);
+        setWindowFaded(false);
+    };
 
 
 
-        </div>
+
+    return (
+        <>
+            {!search && (
+                <div className={`dog-navbar-container ${stickyNavbar ? "sticky" : ""}`}>
+                    <div className="dog-navbar-wrapper">
+                        <div onClick={() => navigate('/')}>
+                            <img src={dog_logo.dog_navbar_logo} alt="Dog Logo" />
+                        </div>
+
+
+                        <Link to="/logout" className="link-sgn-in">
+                            <div className="sgn-in"><li>Logout</li></div>
+                        </Link>
+
+
+
+                        {/* Hover container wrapping navbar and dropdown */}
+                        <div className="navbar-hover-container" onMouseLeave={handleMouseLeave}>
+                            <div className="dogs-navbar-middle-wrapper">
+                                {["friendly", "family", "intelligent"].map((category) => (
+                                    <div key={category} className="dogs-navbar-middle-section"
+                                        onMouseEnter={() => handleMouseEnter(category)}>
+                                        <div className={category}><li>{category.charAt(0).toUpperCase() + category.slice(1)}</li></div>
+                                        <div>{activeDropdown === category ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Dropdown Menu remains inside the hover container */}
+                            <div className="navbar-hover-section">
+                                {activeDropdown === "friendly" && (
+                                    <div className="dropdown-menu-friendly">
+                                        <Link className="link-section"  to="/accessories" >Doberman Pinschers</Link>
+                                        <Link className="link-section"  to="/accessories" >Pembroke Corgi</Link>
+                                    </div>
+                                )}
+                                {activeDropdown === "family" && (
+                                    <div className="dropdown-menu-family">
+                                        <Link className="link-section"  to="/accessories" >Golden Retrievers</Link>
+                                        <Link className="link-section"  to="/accessories" >Labrador Retrievers</Link>
+                                        <Link className="link-section"  to="/accessories" >German Shepherds</Link>
+                                    </div>
+                                )}
+                                {activeDropdown === "intelligent" && (
+                                    <div className="dropdown-menu-intelligent">
+                                        <Link className="link-section"  to="/accessories" >Poodles</Link>
+                                        <Link className="link-section"  to="/accessories" >French Bulldogs</Link>
+                                        <Link className="link-section"  to="/accessories" >Finnish Lapphunds</Link>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+
+
+                        <Link to="/accessories" className="link-accessories"><div>Accessories</div></Link>
+
+
+
+                        <div className="dogs-right-wrapper">
+
+                             <Link to="/category" className="category-link">
+                              <div style={{cursor: 'pointer'}}>Categories</div>
+                              </Link>
+
+                          
+                            <Link to="/cart">
+                                <div><ShoppingCart color="black" size={31} /></div>
+                            </Link>
+
+                            <div className="cart-count"><span>{TotalCartAmountItems ? TotalCartAmountItems() : 0}</span> </div>
+                        </div>
 
 
 
 
 
 
-
+                        <div className="auth-dogs-navbar-middle-section auth-user"  onMouseEnter={() => handleMouseEnter('authuser')}
+                         onMouseLeave={handleMouseLeave}>
+                         <div className="auth-user-text"><li>Welcome: {user?.firstName || user?.name || "User"}</li></div>
+                                <div className="arrow">{activeDropdown === 'authuser' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
+                            <div className="auth-dogs-navbar-links-hover-four">
+                            <Link to="/userOrders" className="auth-link-section-auth-user"><div>Orders</div></Link>
+                            <Link to="/update-profile" className="auth-link-section-auth-user"><div>Update Profile</div></Link>
+                            <Link to="/logout" className="auth-link-section-auth-user"><div>Logout</div></Link>
+                    </div>
     </div>
-)}
-        
+                  
+                  
+                  
+                  
+                  
+
+
+
+                  
+                    </div>
 
 
 
 
-   </>
-  )
-}
 
 
 
 
-export default  AuthNavbar
+                </div>
+   
+   )}
+
+
+            
+        </>
+    );
+};
+
+export default AuthNavbar;

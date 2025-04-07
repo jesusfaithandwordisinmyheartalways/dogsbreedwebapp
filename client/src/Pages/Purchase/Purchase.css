@@ -128,3 +128,32 @@
 .pay-button:active {
     transform: scale(0.98);
 }
+
+
+
+
+
+
+
+
+
+
+
+.address-card {
+    background-color:red;
+    min-width: 280px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content {
+    background: black;
+    padding: 2rem;
+    margin: 5% auto;
+    width: 300px;
+    border-radius: 10px;
+  }

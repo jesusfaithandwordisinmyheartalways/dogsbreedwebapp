@@ -3,260 +3,325 @@
 
 
 
-.auth-dog-navbar-container {
+
+/* Navbar Container */
+.dog-navbar-container {
     width: 100%;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 2s ease-in-out, transform 1s ease-in-out;
-    z-index: 1000;
     background: whitesmoke;
+    transition: top 0.3s;
+    z-index: 1000;
 }
 
-.auth-dog-navbar-container.show {
-    opacity: 1;
-    transform: translateY(0);
+
+
+  /* Sticky Navbar */
+  .dog-navbar-container.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-.auth-dog-navbar-wrapper {
+
+
+
+
+/* Navbar Wrapper */
+.dog-navbar-wrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    max-width: 2000px;
     margin: 0 auto;
-    max-width: 1500px;
+    z-index: 1000;
 }
 
-.auth-dog-navbar-wrapper img {
-    width: 95px;
-    object-fit: contain;
-    mix-blend-mode: multiply;
+
+
+
+/* Navbar Logo */
+.dog-navbar-wrapper img {
+    width: 98px;
     cursor: pointer;
 }
 
-.auth-dog-navbar-wrapper li {
-    text-decoration: none;
-    list-style: none;
-    color: black;
-    cursor: pointer;
+/* Navbar Links */
+.dogs-navbar-middle-wrapper {
+    display: flex;
+    gap: 40px;
 }
 
-.auth-dogs-navbar-middle-wrapper {
+/* Individual Navbar Sections */
+.dogs-navbar-middle-section {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    gap: 89px;
+    cursor: pointer;
+    position: relative;
 }
 
-.auth-dogs-navbar-middle-wrapper li {
+.dogs-navbar-middle-section li {
     font-size: 1.1rem;
-}
-
-.auth-link {
+    margin-right: 5px;
     text-decoration: none;
     list-style: none;
-    color: white;
-    font-size: 0.9rem;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.auth-link-sgn-in {
-    text-decoration: none;
-    list-style: none;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.3rem;
+.dogs-navbar-middle-section:hover li {
+    color: darkgreen;
 }
 
-.auth-link-accessories {
-    text-decoration: none;
-    list-style: none;
-    color: black;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.auth-dogs-right-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    gap: 45px;
-}
-
-.auth-dogs-navbar-middle-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.auth-navbar-hover-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    gap: 45px;
-    background: white;
-}
-
-.auth-dogs-navbar-links-hover-one {
+/* Hover container ensures dropdown remains visible */
+.navbar-hover-container {
     position: relative;
-    top: 0px;
-    left: -315px;
-    background: whitesmoke;
-    height: 199px;
+    display: inline-block;
 }
 
-.auth-dogs-navbar-links-hover-two {
-    position: relative;
-    top: 0px;
-    left: -155px;
-    background: whitesmoke;
-    height: 199px;
+/* Dropdown Menu */
+.navbar-hover-section {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px; /* Adjust width as needed */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
 }
 
-.auth-dogs-navbar-links-hover-three {
-    position: relative;
-    top: 0px;
-    left: -19px;
-    background: whitesmoke;
-    height: 199px;
-}
-
-
-
-.auth-dogs-navbar-links-hover-four {
-    position: relative;
-    top: 0px;
-    left: 289px;
-    background: black;
-    height: 180px;
-    width: 110px;
-    text-align: center;
-    cursor: pointer;
+/* Show dropdown when hovering */
+.navbar-hover-container:hover .navbar-hover-section {
+    visibility: visible;
+    opacity: 1;
 }
 
 
 
 
-.auth-link-section {
-    font-size: 1.1rem;
-    width: 100%;
-    margin: 0px 10px;
-    text-decoration: none;
-    color: blue;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.auth-link-section:hover {
-    background: grey;
-    color: green;
-}
-
-
-
-
-.auth-user {
+/* Dropdown Menu Styling */
+.dropdown-menu-friendly {
     position: relative;
     top:0px;
-    left: 17px;
-}
-
-
-.auth-user-text li {
-    color:green;
-    font-weight: 500;
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-
-}
-
-
-
-
-
-
-
-
-.auth-link-section-auth-user {
-    font-size: 1.1rem;
-    width: 100%;
-    margin: 0px 10px;
-    text-decoration: none;
+    left: -40px;
+    background: black;
     color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+
 }
 
 
+
+
+.dropdown-menu-family {
+    position: relative;
+    top:0px;
+    left: 55px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+
+}
+
+
+
+
+.dropdown-menu-intelligent {
+    position: relative;
+    top:0px;
+    left: 199px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+.link-section {
+    color: white;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.link-section:hover {
+    background: green;
+}
+
+/* Sign In Link */
+.link-sgn-in {
+    position: relative;
+    left: -45px;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.link-sgn-in:hover {
+    color: seagreen;
+}
+
+/* Accessories Link */
+.link-accessories {
+    position: relative;
+    left: -80px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.link-accessories:hover {
+    color: lightgreen;
+}
+
+/* Right Section Icons */
+.dogs-right-wrapper {
+    display: flex;
+    gap: 45px;
+    position: relative;
+    left: -80px;
+}
+
+
+
+
+
+
+
+
+
+
+.cart-count {
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    position: relative;
+    top:-10px;
+    left: -50px;
+    margin:0 auto;
+  }
+
+
+  .cart-count span {
+    color:rgb(36, 171, 114)
+  }
+
+
+
+
+  .category-link {
+    position: relative;
+    top:3px;
+    left: 0px;
+    text-decoration: none;
+    color:black;
+    font-size: 1.1rem;
+  }
+
+  .category-link:hover{
+    color:green
+  }
+
+
+
+
+
+
+
+
+  .auth-dogs-navbar-middle-section {
+    position: relative;
+    top:10px;
+    left: -150px;
+    width: auto;
+    cursor: pointer;
+  }
+
+
+  .auth-user-text {
+    color:green
+  }
+
+
+  .auth-link-section-auth-user {
+    text-decoration: none;
+  }
+
+
+
+
+  .arrow {
+    position: relative;
+    top:-21px;
+    left: 131px;
+    color:black
+
+  }
+
+
+
+  
+
+
+
+
+
+
+
+
+  /* Dropdown Menu for Auth Navbar */
+.auth-dogs-navbar-links-hover-four {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    z-index: 1000;
+}
+
+/* Show dropdown on hover */
+.auth-dogs-navbar-middle-section:hover .auth-dogs-navbar-links-hover-four {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Auth Link Styling */
+.auth-link-section-auth-user {
+    color: white;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+}
 
 .auth-link-section-auth-user:hover {
-    background: grey;
-    color: green;
+    background:green
 }
 
 
-
-
-
-
-
-
-
-
-
-
-/* Show the hover section when hovered */
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}
-
-.auth-friendly,
-.auth-family,
-.auth-intelligent {
-    cursor: pointer;
-}
-
-/* Sticky Navbar */
-.auth-sticky-navbar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure sticky navbar stays behind the sidebar */
-    transition: top 0.3s ease-in-out;
-}
-
-/* Hide navbar when scrolling down */
-.auth-hidden {
-    top: -100px;
-    transition: top 0.3s ease-in-out;
-}
-
-/* Show navbar when scrolling up */
-.auth-visible {
-    top: 0;
-    transition: top 0.3s ease-in-out;
-}
-
-/* Add this class for fading effect */
-.auth-faded-background {
-    background-color: rgba(0, 0, 0, 0.2);
-    transition: background-color 0.5s ease-in-out;
-}

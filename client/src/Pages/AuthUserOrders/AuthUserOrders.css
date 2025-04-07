@@ -1,0 +1,39 @@
+
+
+
+
+.auth-orders-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.auth-orders-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:0 auto;
+    max-width: 1500px;
+}
+
+.auth-orders-wrapper img {
+    width: 90px;
+    object-fit: contain;
+}
+
+
+.auth-orders-wrapper > div {
+    border: 1px solid transparent;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* soft gradient */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 6px 10px rgba(0, 0, 0, 0.05); /* layered shadow */
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.auth-orders-wrapper > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 10px 15px rgba(0, 0, 0, 0.07);
+  }

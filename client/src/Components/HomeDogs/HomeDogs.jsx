@@ -6,9 +6,17 @@ import './HomeDog.css';
 import DogProductItem from '../DogProductItem/DogProductItem';
 import { dogs_products } from '../ArrayData/adoptdogs';
 
+
+
+
+
+
+
 const HomeDogs = () => {
     const containerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
+    const scrollRef = useRef(null);
+    const touchStartX = useRef(0);
 
 
     useEffect(() => {
@@ -35,13 +43,32 @@ const HomeDogs = () => {
 
 
 
+       // Touch event handlers for mobile scrolling
+       const userTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const userTouchMove = (e) => {
+        if (scrollRef.current) {
+            const touchEndX = e.touches[0].clientX;
+            const deltaX = touchStartX.current - touchEndX;
+            scrollRef.current.scrollLeft += deltaX;
+            touchStartX.current = touchEndX; // Update for smoother scrolling
+        }
+    };
+
+
+
+
+
+
    
     return (
         <div ref={containerRef} className={`home-dog-container ${isVisible ? 'fade-in' : ''}`} >
             <h2 className="gallery-title">Adoptable Dogs</h2>
             
             {/* Scrollable Gallery Wrapper */}
-            <div className="scroll-gallery">
+            <div onTouchStart={userTouchStart} onTouchMove={userTouchMove} ref={scrollRef} className="scroll-gallery">
                 {dogs_products.map((data) => (
                     <DogProductItem 
                         key={data.id} 
@@ -57,5 +84,14 @@ const HomeDogs = () => {
         </div>
     );
 };
+
+
+
+
+
+
+
+
+
 
 export default HomeDogs;

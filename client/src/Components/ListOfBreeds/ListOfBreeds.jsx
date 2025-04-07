@@ -62,7 +62,7 @@ const ListOfBreeds = () => {
 
              
                   <div className="ListOfBreeds-Wrapper">
-                  {dogs_products.map((data) => (
+                  {dogs_products.slice(0, 4).map((data) => (
                         <DogProductItem key={data.id} 
                         id={data.id} 
                         image={data.image} 

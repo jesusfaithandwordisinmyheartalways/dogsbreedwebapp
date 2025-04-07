@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ShoppingCart, ChevronUp, ChevronDown } from 'lucide-react';
+import { ShoppingCart, ChevronUp, ChevronDown, Menu } from 'lucide-react';
 import '../Navbar/Navbar.css';
 import { dog_logo } from "../ArrayData/logo.js";
 import AuthNavbar from '../ AuthNavbar/AuthNavbar.jsx';
@@ -18,6 +18,9 @@ const Navbar = ({ authUser }) => {
     const [activeDropdown, setActiveDropdown] = useState(null);
     const { TotalCartAmountItems } = useContext(DogStoreContext)
     const navigate = useNavigate();
+
+ 
+
 
     // Handle sticky navbar on scroll
     useEffect(() => {
@@ -40,6 +43,9 @@ const Navbar = ({ authUser }) => {
 
 
 
+
+
+
     return (
         <>
             {authUser ? (
@@ -51,9 +57,12 @@ const Navbar = ({ authUser }) => {
                             <img src={dog_logo.dog_navbar_logo} alt="Dog Logo" />
                         </div>
 
+
                         <Link to="/register" className="link-sgn-in">
                             <div className="sgn-in"><li>Sign In</li></div>
                         </Link>
+
+
 
                         {/* Hover container wrapping navbar and dropdown */}
                         <div className="navbar-hover-container" onMouseLeave={handleMouseLeave}>
@@ -99,6 +108,11 @@ const Navbar = ({ authUser }) => {
 
 
                         <div className="dogs-right-wrapper">
+
+                             <Link to="/category" className="category-link">
+                              <div style={{cursor: 'pointer'}}>Categories</div>
+                              </Link>
+
                           
                             <Link to="/cart">
                                 <div><ShoppingCart color="black" size={31} /></div>
@@ -110,6 +124,10 @@ const Navbar = ({ authUser }) => {
                   
                   
                   
+                  
+
+
+
                   
                     </div>
                 </div>

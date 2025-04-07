@@ -23,7 +23,7 @@ const Product = () => {
     const [hoverImage, setHoverImage] = useState('');
     const [zoom, setZoom] = useState(false);
     const [multiselect, setMultiSelect] = useState([])
-    const [magnifierStyle, setMagnifierStyle] = useState({ display: 'none' });
+    const [magnifierStyle, setMagnifierStyle] = useState({ display: 'none' });// Stores the style of the magnifier
     const [accordionIsOpen, setAccordionIsOpen] = useState(false)
     const [displaySidebar,  setDisplaySidebar] = useState(false)
 
@@ -171,7 +171,7 @@ const Product = () => {
 
 
 
-
+      // Function to handle mouse move over the image for zoom effect
       const userMouseMove = (e) => {
         if (!zoom) return;
 
@@ -192,14 +192,14 @@ const Product = () => {
 
 
 
-
+      // Function to handle mouse leave event, resetting zoom state
       const userMouseLeave = () => {
         setZoom(false);
         setMagnifierStyle({ display: 'none' });
       }
 
 
-
+     // Function to toggle zoom effect on the image
       const windowZoom = () => {
         setZoom(!zoom);
         if (!zoom) {

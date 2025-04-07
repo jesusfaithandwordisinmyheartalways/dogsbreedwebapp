@@ -47,8 +47,10 @@ code {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
+  width: 130px;
   height: 50px;
+  font-size: 1rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,6 +69,10 @@ code {
 
 
 
+
+.scroll-to-top button {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 
 

@@ -1,7 +1,6 @@
 
 
 
-import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 import UserPostReview from '../models/reviewModel.js'
 
@@ -10,11 +9,10 @@ import UserPostReview from '../models/reviewModel.js'
 
 dotenv.config()
 
-
-
-const UserPostReviewFunction = async(req, res) => {
+const UserPostReviewFunction = async (req, res) => {
     try {
-        console.log("Request Body:", req.body); // Debugging log
+        console.log("Request Body:", req.body);
+
         const { title, review, username, email, rating } = req.body;
 
         if (!title || !review || !username || !email || !rating) {
@@ -25,36 +23,21 @@ const UserPostReviewFunction = async(req, res) => {
             return res.status(400).json({ message: 'Invalid email format' });
         }
 
-
-        const reviewEmail = await UserPostReview.findOne({ email })
-        if (reviewEmail) {
+        // Prevent duplicate reviews from the same email
+        const existingReview = await UserPostReview.findOne({ email });
+        if (existingReview) {
             return res.status(400).json({ message: "You have already submitted a review." });
         }
 
-        const token = jwt.sign({ username, email }, process.env.JWT_SECRET, { expiresIn: "365d" });
-
-        const newReview = new UserPostReview({ title,  review, username, email, rating });
+        // Save to database
+        const newReview = new UserPostReview({ title, review, username, email, rating });
         await newReview.save();
 
-
-        res.cookie("csrfToken", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: "Strict",
-            maxAge: 365 * 24 * 60 * 60 * 1000 
-        });
         res.status(201).json({ message: "Review submitted successfully", review: newReview });
-    }catch(error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-
-}
-
- 
-}
-
-
-
-
+    } catch (error) {
+        console.error("Error in saving review:", error);
+        res.status(500).json({ message: "Server error, unable to submit review." });
+    }
+};
 
 export default UserPostReviewFunction 

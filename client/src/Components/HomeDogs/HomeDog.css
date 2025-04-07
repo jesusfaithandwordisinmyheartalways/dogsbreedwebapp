@@ -60,3 +60,29 @@
         width: 100%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:420px) {
+
+    .scroll-container {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        touch-action: pan-x;
+    }
+
+
+
+}

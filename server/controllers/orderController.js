@@ -15,30 +15,19 @@ dotenv.config();
 let backendOrders = [];
 
 
-
-
 const UserOrder = async (req, res) => {
-    const { name, email, address, phone, cart, pickupOption } = req.body;
-    const orders = req.body.orders;
-     console.log('Received orders:', orders);
-     res.json({ message: 'Orders received' });
-
     try {
+        const { name, email, address, phone, cart, pickupOption } = req.body;
+        console.log('Received cart:', cart); // Corrected key name
 
-        
-        const emailOrderExist = await OrderUser.findOne({ email });
-        if (emailOrderExist) {
-            return res.status(400).json({ success: false, message: 'An order with this email already exists.' });
-        }
-
+          // add code to make sure the OrderUser properties are valid based on the  OrderUser  Schema 
         if (!cart || cart.length === 0) {
             return res.status(400).json({ success: false, message: 'Cart cannot be empty.' });
         }
 
-        
         // Save order to database
         const newOrderUser = new OrderUser({
-            id: backendOrders.length + 1,
+            userId:req.user._id, // Store the user ID from the authenticated user
             name,
             email,
             address,

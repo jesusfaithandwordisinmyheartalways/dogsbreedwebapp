@@ -7,13 +7,9 @@
 import mongoose from 'mongoose'
 
 
-
-
-
 const reviewSchema = new mongoose.Schema({
     title: { type: String, required: true, minlength: 3 },
     review: { type: String, required: true, minlength: 3 },
-
 
     username: {
         type: String,
@@ -49,8 +45,5 @@ const reviewSchema = new mongoose.Schema({
 
 
 
-
-
-
-const UserPostReview = mongoose.model('reviews', reviewSchema, 'reviews')
+const UserPostReview = mongoose.model('new-reviews', reviewSchema, 'new-reviews')
 export default UserPostReview
