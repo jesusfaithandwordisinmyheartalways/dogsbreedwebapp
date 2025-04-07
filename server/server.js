@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
 
 
 
-const PORT = process.env.PORT || '3001'
+const PORT = process.env.PORT || 'https://dogstoreserver.onrender.com'
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
 });
