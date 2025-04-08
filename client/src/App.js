@@ -100,7 +100,7 @@ function App() {
 
   const userAuthentication = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/authentication`,{
+      const response = await fetch('https://dogstoreserver.onrender.com/auth/authentication',{
         credentials: "include", // Ensures cookies are sent
       });
       const data = await response.json();
