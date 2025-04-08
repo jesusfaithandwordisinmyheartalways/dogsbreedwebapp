@@ -172,8 +172,6 @@ for (let data of dogs_products) {
   };
 
 
-
-
   try {
     const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
     const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
@@ -202,6 +200,9 @@ for (let data of dogs_products) {
   }
 
 
+
+
+  
 
 //PUT Request to Save/Update Address
   const saveNewAddress = async () => {
