@@ -4,7 +4,6 @@
 
 import jwt from 'jsonwebtoken';
 import RegisterUser from '../models/registerModel.js'
-import mongoose from 'mongoose';
 
 
 
@@ -17,8 +16,7 @@ const userAuthentication = async (req, res, next) => {
         }
         
           const decoded = jwt.verify(token, process.env.JWT_SECRET)
-          const user = await RegisterUser.findOne({  _id: new mongoose.Types.ObjectId(decoded.id) });
-
+          const user = await RegisterUser.findById(decoded.id);
           if (!user) {
             return res.status(401).json({ authenticated: false });
         }

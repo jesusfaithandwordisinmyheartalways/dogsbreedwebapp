@@ -109,10 +109,11 @@
 
 
 .pay-button {
-    background: whitesmoke;
+    background: purple;
     border:1px solid black;
-    color: blue;
+    color: whitesmoke;
     font-size: 1rem;
+    font-family: "Oak", "Maple", "Pine", "Sycamore", "Willow";
     padding: 12px 20px;
     border: none;
     border-radius: 5px;

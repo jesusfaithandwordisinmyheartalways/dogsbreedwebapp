@@ -41,7 +41,7 @@ const Register = () => {
 
             try {
                 console.log("Sending registration request:", User_Register_Data);
-                const response = await fetch('https://dogstoreserver.onrender.com/user/register', {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/user/register`, {
                     method:"POST",
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(User_Register_Data)

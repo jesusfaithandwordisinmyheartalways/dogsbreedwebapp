@@ -48,7 +48,8 @@ const UserOrder = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'None',
-            maxAge: 365 * 24 * 60 * 60 * 1000,
+            maxAge: 1000 * 60 * 60 * 24 * 30
+
         });
 
         res.json({ success: true, message: "Order placed successfully!", order: newOrderUser });

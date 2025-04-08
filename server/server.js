@@ -3,7 +3,7 @@
 
 
 import express from 'express';
-import session from 'express-session'
+import path from 'path'
 import dotenv from 'dotenv'
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -28,21 +28,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
-
-
 app.use(cookieParser());
 
 app.use(cors({
+  credentials:true,
   origin: 'https://dogstoreclient.onrender.com' ,
-    credentials:true,
-  
-
 }))
 
 
+
+
+// Serve React client
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Catch-all for React routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 
 
@@ -118,7 +120,7 @@ app.get('/', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

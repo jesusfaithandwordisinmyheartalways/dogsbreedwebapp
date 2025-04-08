@@ -20,7 +20,7 @@ import dog_playing_with_ball_image from '../Images/Dog playing with ball.gif'
 import Accessories_Image from '../Images/dog shampoo-and-conditioner.png'
 import Accessories_Image_Two from '../Images/dog-toothbrush-toothpaste-kit.jpg'
 import Accessories_Image_Three from '../Images/dog-Ear-Cleaner.png'
-
+import Green_Check_Image from '../Images/green check confirmation.png'
 
 
 
@@ -41,7 +41,8 @@ export const dog_logo = {
     dog_playing_with_ball_image,
     Accessories_Image,
     Accessories_Image_Two,
-    Accessories_Image_Three
+    Accessories_Image_Three,
+    Green_Check_Image 
     
 }
 

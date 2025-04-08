@@ -1,0 +1,23 @@
+
+
+
+.order-placed-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.order-placed-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+
+.order-placed-wrapper img {
+    width: 145px;
+    object-fit: contain;
+}
