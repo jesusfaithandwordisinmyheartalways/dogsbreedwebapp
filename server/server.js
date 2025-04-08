@@ -3,7 +3,6 @@
 
 
 import express from 'express';
-import path from 'path'
 import dotenv from 'dotenv'
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -18,6 +17,8 @@ import orderRoutes from './routes/orderlRoute.js'
 import stripeRoutes from './routes/stripeRoute.js'
 import adminLoginRoutes from './routes/adminRoute.js'
 import connectMongoDB from './configuration/mongodb.js'
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 
@@ -39,14 +40,9 @@ app.use(cors({
 
 
 // Serve React client
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'client/build')));
-
-// Catch-all for React routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
-
 
 
 app.use(helmet());
@@ -73,6 +69,10 @@ connectMongoDB()
 
 
 
+// Serve static files from the 'client' directory
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 
 
