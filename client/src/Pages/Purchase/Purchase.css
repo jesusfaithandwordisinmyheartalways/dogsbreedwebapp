@@ -158,3 +158,35 @@
     width: 300px;
     border-radius: 10px;
   }
+
+
+
+
+
+  .form-error-message {
+    color: red;
+    background: black;
+    padding:0.1em;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    animation: jiggle 0.4s ease-in-out infinite;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+  }
+  
+  /* Jiggle animation */
+  @keyframes jiggle {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(2deg);
+    }
+    50% {
+      transform: rotate(-2deg);
+    }
+    75% {
+      transform: rotate(1deg);
+    }
+  }

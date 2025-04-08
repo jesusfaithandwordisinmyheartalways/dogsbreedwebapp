@@ -16,7 +16,7 @@ const AuthUserOrders = () => {
 
      // Get general user info from the first order (if available)
      const userInfo = userOrders.find(order => order.name && order.email);
-     const userDogOrders = userOrders.find(data => data.dogName && data.image[0] && data.size && data.quantity)
+     const userDogOrders = userOrders.filter(data => data.dogName && data.image[0] && data.size && data.quantity);
 
      useEffect(() => {
          if (userOrders.length > 0) {
@@ -32,7 +32,7 @@ const AuthUserOrders = () => {
         const fetchUserOrders = async () => {
           try {
             const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
-            const response = await fetch('https://dogstoreserver.onrender.com/user-orders', {
+            const response = await fetch('http://localhost:3001/user-orders', {
               method: 'GET',
               headers: {
                         'Authorization': `Bearer ${token}`
@@ -56,7 +56,8 @@ const AuthUserOrders = () => {
 
 
 
-      if (loading) return <div>Loading your orders...</div>;
+      if (loading) return <div className="loading-spinner">Loading your orders...</div>;
+
       if (error) return <div>{error}</div>;
 
 
@@ -66,8 +67,9 @@ const AuthUserOrders = () => {
     return (
         <>
             <div className='auth-orders-container'>
+            <h3>Your Order History</h3>
                 <div className='auth-orders-wrapper'>
-                    <h3>Your Order History</h3>
+                   
 
                     {userInfo && (
                         <div>
@@ -91,16 +93,15 @@ const AuthUserOrders = () => {
 
 
 
-                    {userDogOrders && (
-                        <div>
-                            <p><strong>Breed:</strong>{userDogOrders.dogName}</p>
-                            <div><img src={userDogOrders.image} alt={userDogOrders.dogName}></img></div>
-                            <p><strong>Size:</strong>{userDogOrders.size}</p>
-                            <p><strong>PickupOption</strong> {userDogOrders.pickupOption}</p>
-                            <p><strong>Quantity</strong> {userDogOrders.quantity}</p>
+                    {userDogOrders.map((data, index) => (
+                        <div key={index} className='auth-order-display-history'>
+                            <p><strong>Breed:</strong>{data.dogName}</p>
+                            <div><img src={data.image} alt={data.dogName}></img></div>
+                            <p><strong>Size:</strong>{data.size}</p>
+                            <p><strong>PickupOption</strong> {data.pickupOption}</p>
+                            <p><strong>Quantity</strong> {data.quantity}</p>
                         </div>
-                    )}
-
+                    ))}
 
                    
 

@@ -30,6 +30,8 @@ const Purchase = () => {
     const [editAddress, setEditAddress] = useState([])
     const [removeAddress, setRemoveAddress] = useState([])
     const [editAddressFormVisible, setEditAddressFormVisible] = useState(false)
+    const [disbledStripe, setDisableStripe] = useState(true)
+
 
 
 
@@ -50,6 +52,23 @@ const Purchase = () => {
       country: '',
       phone: ''
     });
+
+
+     // Check if form is valid
+     const isFormValid = () => {
+      return formData.firstName && formData.lastName && formData.email && 
+             formData.street && formData.city && formData.state &&
+             formData.zipcode && formData.country && formData.phone && 
+             /^\S+@\S+\.\S+$/.test(formData.email) && 
+             /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(formData.phone);
+    }
+
+
+
+    // Check form validity on each change
+    useEffect(() => {
+      setDisableStripe(!isFormValid());
+    }, [formData]);
 
 
 
@@ -141,7 +160,13 @@ for (let data of dogs_products) {
     if (!/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(formData.phone)) errors.phone = "Invalid phone number format";
 
     setErrorMessage(errors);
-    return Object.keys(errors).length === 0;
+    if (Object.keys(errors).length > 0) {
+      alert("Please complete all required fields and ensure the information is valid.");
+      return false; // Return false to prevent form submission
+    }
+    return true; 
+
+    
   };
 
 
@@ -174,7 +199,7 @@ for (let data of dogs_products) {
 
   try {
     const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
+    const response = await fetch('http://localhost:3001/orders/purchase', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -190,6 +215,7 @@ for (let data of dogs_products) {
      setUserOrders(prevOrders => [...prevOrders, orderData])// Update the global userOrders state from DogStoreProvider
       navigate('/order-placed') // Navigate to OrderPlaced and pass data
   } else {
+       console.log("Error message: ", result.message);
       setErrorMessage(result.message)
   }
   }catch(error) {
@@ -202,13 +228,13 @@ for (let data of dogs_products) {
 
 
 
-  
+
 
 //PUT Request to Save/Update Address
   const saveNewAddress = async () => {
     try {
       const token = getCookie('authToken'); 
-      const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
+      const response = await fetch('http://localhost:3001/orders/purchase', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -233,7 +259,7 @@ for (let data of dogs_products) {
  const deleteAddress = async (addressId) => {
   try {
     const token = getCookie('authToken'); 
-      const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase/${addressId}', {
+      const response = await fetch('http://localhost:3001/orders/purchase/${addressId}', {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` },
           credentials: 'include'
@@ -278,7 +304,7 @@ for (let data of dogs_products) {
     const fetchSavedAddress = async () => {
         try {
             const token = getCookie('authToken'); 
-            const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
+            const response = await fetch('http://localhost:3001/orders/purchase', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` },
                 credentials: 'include'
@@ -312,7 +338,7 @@ for (let data of dogs_products) {
     e.preventDefault();
        try {
        const token = getCookie('authToken'); 
-        const response = await fetch('https://dogstoreserver.onrender.com/orders/purchase', {
+        const response = await fetch('http://localhost:3001/orders/purchase', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -333,6 +359,8 @@ for (let data of dogs_products) {
     }
 };
     
+
+
 
 
 
@@ -541,11 +569,13 @@ for (let data of dogs_products) {
 
 
 
-                  <div>
+                  <div className='stripe-section'>
                       <div> <h3>Express Payment</h3></div>
                       <div>
-                      <button onClick={() => navigate('/payment')} className='pay-button'>Stripe Payment</button>
-
+                      <button onClick={() => navigate('/payment')} disabled={disbledStripe}  className='pay-button'>Stripe Payment</button>
+                            {!isFormValid() && (
+                              <div className='form-error-message'><p>Please fill out form before proceeding to payment</p></div>
+                            )}
                       </div>
                   </div>
 

@@ -52,7 +52,7 @@ const UserOrder = async (req, res) => {
 
         });
 
-        res.json({ success: true, message: "Order placed successfully!", order: newOrderUser, authToken });
+        res.status(200).json({ success: true, message: "Order placed successfully!", order: newOrderUser});
     } catch (error) {
         console.error("Order Submission Error:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });

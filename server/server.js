@@ -17,8 +17,6 @@ import orderRoutes from './routes/orderlRoute.js'
 import stripeRoutes from './routes/stripeRoute.js'
 import adminLoginRoutes from './routes/adminRoute.js'
 import connectMongoDB from './configuration/mongodb.js'
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { resolve } from 'path';
 
 
@@ -35,17 +33,13 @@ app.use(cookieParser());
 
 app.use(cors({
   credentials:true,
-  origin: 'https://dogstoreclient.onrender.com' ,
+  origin: 'http://localhost:3000' ,
 }))
 
 app.use(helmet());
 
 
 
-// Serve React client
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 
@@ -72,12 +66,6 @@ connectMongoDB()
 
 
 
-// Serve static files from the 'client' directory
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
-
 
 
 
@@ -85,6 +73,9 @@ app.get("*", (req, res) => {
 
 //  Serve static files from the 'client' directory
  // Serves static files like HTML, CSS, JS from the client folder
+ app.use(express.static(process.env.STATIC_DIR));  // Serves static files like HTML, CSS, JS from the client folder
+
+
 
 
 
@@ -108,6 +99,8 @@ app.get("/config", (req, res) => {
 
 
   
+
+
 
 
 
