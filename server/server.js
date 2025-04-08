@@ -19,7 +19,7 @@ import adminLoginRoutes from './routes/adminRoute.js'
 import connectMongoDB from './configuration/mongodb.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+import { resolve } from 'path';
 
 
 dotenv.config();
@@ -36,6 +36,7 @@ app.use(cors({
   origin: 'https://dogstoreclient.onrender.com' ,
 }))
 
+app.use(helmet());
 
 
 
@@ -45,7 +46,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 
-app.use(helmet());
+
 
 
 
@@ -81,7 +82,7 @@ app.get("*", (req, res) => {
 
 
 //  Serve static files from the 'client' directory
-app.use(express.static(process.env.STATIC_DIR));  // Serves static files like HTML, CSS, JS from the client folder
+ // Serves static files like HTML, CSS, JS from the client folder
 
 
 

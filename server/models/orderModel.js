@@ -7,7 +7,9 @@
 import mongoose from 'mongoose';
 
 const userOrderSchema = new mongoose.Schema({
-  name: { type: String, required: true, minlength: 2 }, // Full name
+  name: {
+     type: String, required: true, minlength: 2
+     }, // Full name
 
   email: { 
     type: String, 
@@ -76,6 +78,9 @@ const userOrderSchema = new mongoose.Schema({
 
   createdAt: { type: Date, default: Date.now }
 });
+
+
+
 
 const OrderUser = mongoose.model('orders', userOrderSchema, 'orders');
 export default OrderUser;

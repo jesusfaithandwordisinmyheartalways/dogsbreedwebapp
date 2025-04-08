@@ -47,8 +47,8 @@ const UserOrder = async (req, res) => {
         res.cookie('authToken', authToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'None',
-            maxAge: 1000 * 60 * 60 * 24 * 30
+            sameSite: 'Strict',
+            maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year expiration
 
         });
 
