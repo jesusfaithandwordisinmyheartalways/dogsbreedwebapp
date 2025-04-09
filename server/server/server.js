@@ -8,15 +8,15 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser'
 import cors from 'cors';
-import registerRoutes from './routes/registerRoute.js'
-import loginRoutes from './routes/loginRoute.js'
-import authenticationRoutes from './routes/authRoute.js'
-import logoutRoutes from './routes/logoutRoute.js'
-import reviewRoutes from './routes/reviewsRoute.js'
-import orderRoutes from './routes/orderlRoute.js'
-import stripeRoutes from './routes/stripeRoute.js'
-import adminLoginRoutes from './routes/adminRoute.js'
-import connectMongoDB from './configuration/mongodb.js'
+import registerRoutes from '../routes/registerRoute.js'
+import loginRoutes from '../routes/loginRoute.js'
+import authenticationRoutes from '../routes/authRoute.js'
+import logoutRoutes from '../routes/logoutRoute.js'
+import reviewRoutes from '../routes/reviewsRoute.js'
+import orderRoutes from '../routes/orderlRoute.js'
+import stripeRoutes from '../routes/stripeRoute.js'
+import adminLoginRoutes from '../routes/adminRoute.js'
+import connectMongoDB from '../configuration/mongodb.js'
 import { resolve } from 'path';
 
 
