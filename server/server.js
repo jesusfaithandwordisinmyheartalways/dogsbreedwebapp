@@ -27,13 +27,6 @@ dotenv.config();
 const app = express()
 
 
-// HTTP to HTTPS redirection middleware
-app.use((req, res, next) => {
-  if (req.protocol === 'http' && process.env.NODE_ENV === 'production') {
-    return res.redirect(301, `https://${req.get('host')}${req.url}`);
-  }
-  next();
-});
 
 
 
@@ -43,6 +36,7 @@ app.use((req, res, next) => {
 
 
 app.use(express.json());
+app.use(bodyParser())
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
