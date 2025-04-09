@@ -32,7 +32,7 @@ const AuthUserOrders = () => {
         const fetchUserOrders = async () => {
           try {
             const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
-            const response = await fetch('http://localhost:3001/user-orders', {
+            const response = await fetch('https://dogstoreuserappserver.onrender.com/user-orders', {
               method: 'GET',
               headers: {
                         'Authorization': `Bearer ${token}`

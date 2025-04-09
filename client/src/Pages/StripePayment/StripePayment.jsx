@@ -24,7 +24,7 @@ const StripePayment = () => {
             try {
               console.log("Requesting Payment Intent..."); // Add this
       
-              const response = await fetch('http://localhost:3001/stripe/create-payment-intent', {
+              const response = await fetch('https://dogstoreuserappserver.onrender.com/stripe/create-payment-intent', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ amount: 5000 }), // Ensure amount is sent
@@ -53,7 +53,7 @@ const StripePayment = () => {
       useEffect(() => {
         const fetchConfig = async () => {
           try {
-            const response = await fetch('http://localhost:3001/config');
+            const response = await fetch('https://dogstoreuserappserver.onrender.com/config');
             if (!response.ok) throw new Error("Failed to fetch Stripe config");
     
             const { publishableKey } = await response.json();

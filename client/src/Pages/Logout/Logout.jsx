@@ -23,7 +23,7 @@ const Logout = ({ onLogout}) => {
         const userLogout = async (e) => {
             e.preventDefault()
             try {
-                const response = await fetch('http://localhost:3001/exit/logout', {
+                const response = await fetch('https://dogstoreuserappserver.onrender.com/exit/logout', {
                     method: "POST",
                     credentials: 'include',
                 })
