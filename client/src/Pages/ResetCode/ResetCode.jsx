@@ -30,7 +30,7 @@ const ResetCode = () => {
             return;
           }
         try {
-            const response = await fetch('http://localhost:3001/code/verify', {
+            const response = await fetch('https://dogsmarketserver.onrender.com/code/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:JSON.stringify({ email, number, otp })
