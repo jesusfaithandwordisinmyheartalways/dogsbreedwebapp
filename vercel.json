@@ -17,11 +17,11 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/server/(.*)",
         "dest": "/server/$1"
       },
       {
-        "src": "/(.*)",
+        "src": "/client/(.*)",
         "dest": "/client/build/$1"
       }
     ]
