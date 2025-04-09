@@ -15,7 +15,6 @@ root.render(
   <BrowserRouter>
   <DogStoreProvider>
      <App />
-
   </DogStoreProvider>
      
   </BrowserRouter>

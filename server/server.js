@@ -6,7 +6,6 @@ import express from 'express';
 import dotenv from 'dotenv'
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser'
 import cors from 'cors';
 import registerRoutes from './routes/registerRoute.js'
 import loginRoutes from './routes/loginRoute.js'
@@ -27,21 +26,13 @@ dotenv.config();
 const app = express()
 
 
-
-
-
-
-
-
-
-
 app.use(express.json());
-
 app.use(cookieParser());
+
 
 app.use(cors({
   credentials:true,
-  origin: 'https://dogstoreuserappclient.onrender.com',
+  origin:'https://dogstoreuserappclient.onrender.com',
 }))
 
 app.use(helmet());
@@ -74,16 +65,9 @@ connectMongoDB()
 
 
 
-
-
-
-
-
 //  Serve static files from the 'client' directory
  // Serves static files like HTML, CSS, JS from the client folder
  app.use(express.static(process.env.STATIC_DIR));  // Serves static files like HTML, CSS, JS from the client folder
-
-
 
 
 

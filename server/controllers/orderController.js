@@ -51,8 +51,8 @@ const UserOrder = async (req, res) => {
             maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year expiration
 
         });
-
-        res.status(200).redirect('/orderPlaced');
+       
+        res.status(200).json({ success: true, message: 'Order placed successfully' });
     } catch (error) {
         console.error("Order Submission Error:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });

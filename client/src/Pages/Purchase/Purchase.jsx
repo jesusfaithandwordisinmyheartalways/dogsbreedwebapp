@@ -210,11 +210,10 @@ for (let data of dogs_products) {
   });
 
   const result = await response.json();
-  if(response.ok) {
+  if(response.ok && result.success) {
      setOriginalCartItems({});  
      setUserOrders(prevOrders => [...prevOrders, orderData])
       navigate('/orderPlaced') 
-      window.location.href = '/orderPlaced'
   } else {
        console.log("Error message: ", result.message);
       setErrorMessage(result.message)

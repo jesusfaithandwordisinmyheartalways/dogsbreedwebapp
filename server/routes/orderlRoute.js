@@ -21,9 +21,9 @@ const router = express.Router()
 
 router.get('/user-orders', userAuthentication, fetchOrders )
 router.get('/purchase',userAuthentication, getSavedAddresses)
-router.post('/purchase',  userAuthentication, UserOrder)
-router.put('/purchase', userAuthentication, updateAddress )  //add functions
-router.delete('/purchase/:addressId', userAuthentication, deleteAddress )  //add functions
+router.post('/orders/purchase', userAuthentication, UserOrder);
+router.put('/purchase', userAuthentication, updateAddress )  
+router.delete('/purchase/:addressId', userAuthentication, deleteAddress )  
 
 
 
