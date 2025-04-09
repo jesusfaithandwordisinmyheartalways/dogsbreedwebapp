@@ -238,7 +238,7 @@ const Product = () => {
                 <div className='top-left-images'>
                   {productData.image.map((data, index) => (
                     <div key={index}>
-                      <img onClick={() => setImage(data)} onMouseEnter={() => setHoverImage(data)} src={data} alt={productData.name} className="thumbnail" ></img>
+                      <img onClick={() => setImage(data)} onMouseEnter={() => setHoverImage(data)} src={data} alt={productData.image} className="thumbnail" ></img>
                     </div>
                   ))}
                 </div>
