@@ -174,7 +174,10 @@ for (let data of dogs_products) {
   
 
 
-
+const completeOrder = () => {
+  setOriginalCartItems({});
+  navigate('/orderPlaced');
+};
 
 
   const userOrderSubmit = async (e) => {
@@ -208,14 +211,9 @@ for (let data of dogs_products) {
       credentials: 'include',
       body: JSON.stringify(orderData),
   });
-
-
-  const result = await response.json();
-
-  if(response.ok) {
-    
-    navigate('/orderPlaced') 
-     setOriginalCartItems({});  
+    const result = await response.json();
+     if(response.ok) {
+     completeOrder();
      setUserOrders(prevOrders => [...prevOrders, orderData])
      
   } else {
