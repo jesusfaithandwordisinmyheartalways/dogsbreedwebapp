@@ -1,6 +1,9 @@
 
 
 
+
+
+
 {
   "name": "client",
   "version": "0.1.0",
@@ -39,6 +42,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://dogstoreuserappserver.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
