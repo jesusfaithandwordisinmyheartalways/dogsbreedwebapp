@@ -199,7 +199,7 @@ for (let data of dogs_products) {
 
   try {
     const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('http://localhost:3001/orders/purchase', {
+    const response = await fetch('https://dogsmarketserver.onrender.com/orders/purchase', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
