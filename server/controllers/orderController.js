@@ -46,7 +46,7 @@ const UserOrder = async (req, res) => {
         // Set token as a secure cookie
         res.cookie('authToken', authToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             sameSite: 'Strict',
             maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year expiration
 

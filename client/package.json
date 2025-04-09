@@ -42,7 +42,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://dogstoreuserappserver.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -179,7 +179,7 @@ for (let data of dogs_products) {
 
   const userOrderSubmit = async (e) => {
     e.preventDefault()
-    if (!orderForm()) return;
+   
 
     const orderData = {
       name: `${formData.firstName} ${formData.lastName}`, // Combine first & last name
@@ -199,7 +199,7 @@ for (let data of dogs_products) {
 
   try {
     const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('https://dogstoreuserappserver.onrender.com/orders/purchase', {
+    const response = await fetch('http://localhost:3001/orders/purchase', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -209,11 +209,15 @@ for (let data of dogs_products) {
       body: JSON.stringify(orderData),
   });
 
+
   const result = await response.json();
-  if(response.ok && result.success) {
+
+  if(response.ok) {
+    
+    navigate('/orderPlaced') 
      setOriginalCartItems({});  
      setUserOrders(prevOrders => [...prevOrders, orderData])
-      navigate('/orderPlaced') 
+     
   } else {
        console.log("Error message: ", result.message);
       setErrorMessage(result.message)
@@ -224,150 +228,6 @@ for (let data of dogs_products) {
   }
 
   }
-
-
-
-
-
-
-//PUT Request to Save/Update Address
-  const saveNewAddress = async () => {
-    try {
-      const token = getCookie('authToken'); 
-      const response = await fetch('https://dogstoreuserappserver.onrender.com/orders/purchase', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        credentials: 'include',
-        body: JSON.stringify(formData)
-      });
-  
-      const data = await response.json();
-      if (response.ok) {
-        setSavedAddress(data.addresses);
-      }
-    } catch (error) {
-      console.error("Failed to save new address", error);
-    }
-  };
-
-
-
- // Handle Delete Address
- const deleteAddress = async (addressId) => {
-  try {
-    const token = getCookie('authToken'); 
-      const response = await fetch('https://dogstoreuserappserver.onrender.com/orders/purchase/${addressId}', {
-          method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` },
-          credentials: 'include'
-      });
-
-      if (response.ok) {
-          setSavedAddress(prev => prev.filter(addr => addr._id !== addressId));
-      }
-  } catch (error) {
-      console.error("Delete failed", error);
-  }
-};
-
-
-
-
-
-
-
-
-
-  //Handler for Selecting Saved Address
-
-    const userSelectedAddress  = (address) => {
-        setPrevAddress(address)
-        setFormData({
-          firstName: address.firstName || '',
-          lastName: address.lastName || '',
-          email: address.email || '',
-          street: address.street,
-          city: address.city,
-          state: address.state,
-          zipcode: address.zipcode,
-          country: address.country,
-          phone: address.phone || ''
-        })
-    }
-
-
-   // Fetch Saved Addresses (Only last 3)
-   useEffect(() => {
-    const fetchSavedAddress = async () => {
-        try {
-            const token = getCookie('authToken'); 
-            const response = await fetch('https://dogstoreuserappserver.onrender.com/orders/purchase', {
-                method: 'GET',
-                headers: { 'Authorization': `Bearer ${token}` },
-                credentials: 'include'
-            });
-            const data = await response.json();
-            if (response.ok && data.addresses) {
-                setSavedAddress(data.addresses);
-            }
-        } catch (error) {
-            console.error("Failed to fetch saved addresses", error);
-        }
-    };
-    fetchSavedAddress();
-}, []);
-  
-
-
-
-
-
-
-    const userEdit = (address) => {
-      setFormData({...address})
-      setEditAddressFormVisible(true)
-    }
-
-
-
-   // Submit Edited Address
-   const submitEdit = async (e) => {
-    e.preventDefault();
-       try {
-       const token = getCookie('authToken'); 
-        const response = await fetch('https://dogstoreuserappserver.onrender.com/orders/purchase', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            credentials: 'include',
-            body: JSON.stringify({ address: formData })
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            alert("Address updated.");
-            setSavedAddress(data.addresses);
-            setEditAddressFormVisible(false);
-        }
-    } catch (error) {
-        console.error("Error updating address", error);
-    }
-};
-    
-
-
-
-
-
-
-
-
-
 
 
 
@@ -496,54 +356,11 @@ for (let data of dogs_products) {
 
 
 
-                {/*----------ADD CODE FOR THE FORM  to review all the user  Saved Addresses */}
-
-                        <div className='display-saved-address-wrapper'>
-                          <div> <h3>Previous Addresses</h3></div>
-
-                          <div className="previous-addresses-wrapper">
-                          {savedAddress.length > 0 ? (
-                        savedAddress.map((address, index) => (
-                            <div key={index} className="saved-address">
-                                <p>{address.street}, {address.city}, {address.state}, {address.zipcode}, {address.country}</p>
-                                <button onClick={() => userSelectedAddress(address)}>Select</button>
-                                <button onClick={() => userEdit(address)}>Edit</button>
-                                <button onClick={() => deleteAddress(address._id)}>Remove</button>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No saved addresses available.</p>
-                    )}
-                </div>
-                         
-
-
-
-                        </div>
                               
                               
                               
                               
-                              
-                              {/*----------ADD CODE FOR THE FORM  for the user to edit their Addresses and update it in the DOM as the new Address */}
-
-                              {editAddressFormVisible && (
-                              <div className="edit-address-form">
-                                  <h3>Edit Address</h3>
-                                  <form onSubmit={submitEdit}>
-                                      <div>
-                                          <label>Street:</label>
-                                          <input type="text" name="street" value={formData.street} onChange={(e) => setFormData({ ...formData, street: e.target.value })} />
-                                      </div>
-                                      <div>
-                                          <label>City:</label>
-                                          <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
-                                      </div>
-                                      {/* Add other fields as needed */}
-                                      <button type="submit">Save Changes</button>
-                                  </form>
-                              </div>
-                          )}
+                          
 
 
 
