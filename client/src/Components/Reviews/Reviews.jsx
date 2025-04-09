@@ -46,7 +46,7 @@ const Reviews = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await fetch('https://dogstoreuserappserver.onrender.com/reviews/user-reviews');
+                const response = await fetch('https://dogsmarketserver.onrender.com/reviews/user-reviews');
                      if (!response.ok) 
                     throw new Error('Failed to fetch reviews');
                 const data = await response.json();
@@ -106,7 +106,7 @@ const Reviews = () => {
         };
     
         try {
-            const response = await fetch('https://dogstoreuserappserver.onrender.com/reviews/user-reviews', {
+            const response = await fetch('https://dogsmarketserver.onrender.com/reviews/user-reviews', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newReview),
