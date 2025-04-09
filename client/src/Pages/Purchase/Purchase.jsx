@@ -20,7 +20,6 @@ const getCookie = (name) => {
 
 
 
-
 const Purchase = () => {
     const  navigate = useNavigate()
     const currentInput = useRef();
@@ -174,10 +173,7 @@ for (let data of dogs_products) {
   
 
 
-const completeOrder = () => {
-  setOriginalCartItems({});
-  navigate('/orderPlaced');
-};
+
 
 
   const userOrderSubmit = async (e) => {
@@ -201,8 +197,8 @@ const completeOrder = () => {
 
 
   try {
-    const token = getCookie('authToken');  // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('https://dogsmarketserver.onrender.com/orders/purchase', {
+    const token = getCookie('purchaseToken');  // Assuming token is stored in cookies as 'authToken'
+    const response = await fetch('http://localhost:3001/orders/purchase', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -211,11 +207,12 @@ const completeOrder = () => {
       credentials: 'include',
       body: JSON.stringify(orderData),
   });
-    const result = await response.json();
-     if(response.ok) {
-     completeOrder();
+
+  const result = await response.json();
+  if(response.ok) {
+    navigate('/orderPlaced') 
+     setOriginalCartItems({});  
      setUserOrders(prevOrders => [...prevOrders, orderData])
-     
   } else {
        console.log("Error message: ", result.message);
       setErrorMessage(result.message)

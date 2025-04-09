@@ -44,7 +44,7 @@ const UserOrder = async (req, res) => {
         );
 
         // Set token as a secure cookie
-        res.cookie('authToken', authToken, {
+        res.cookie('purchaseToken', authToken, {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',

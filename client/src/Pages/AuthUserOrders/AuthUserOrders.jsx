@@ -8,10 +8,24 @@ import { DogStoreContext } from '../../Context/DogStoreProvider';
 
 
 
+
+
+
+
+
 const AuthUserOrders = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { userOrders, setUserOrders } = useContext(DogStoreContext);
+
+
+    const getCookie = (name) => {
+        const cookies = document.cookie.split('; ');
+        const cookie = cookies.find(row => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+    };
+
+    
 
 
      // Get general user info from the first order (if available)
@@ -31,8 +45,8 @@ const AuthUserOrders = () => {
     useEffect(() => {
         const fetchUserOrders = async () => {
           try {
-            const token = document.cookie.split('=')[1]; // Assuming token is stored in cookies as 'authToken'
-            const response = await fetch('https://dogsmarketserver.onrender.com/user-orders', {
+            const token = getCookie('authToken')
+            const response = await fetch('http://localhost:3001/user-orders', {
               method: 'GET',
               headers: {
                         'Authorization': `Bearer ${token}`

@@ -10,8 +10,6 @@ import OrderUser from "../models/orderModel.js";
 
 
 
-
-
 const fetchOrders = async (req, res) => {
     try {
         const orders = await OrderUser.find({ userId: req.user._id });
