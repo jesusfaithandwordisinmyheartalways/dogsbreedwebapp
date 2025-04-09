@@ -197,7 +197,7 @@ useEffect(() => {
     <Route path="/confirm" element={<NewPassword />}/>
     <Route path="/product/:productId" element={<Product />} />
     <Route path="/purchase" element={<Purchase />}/>
-    <Route path="/order-placed" element={<OrderPlaced />}/>
+    <Route path="/orderPlaced" element={<OrderPlaced />}/>
     <Route path="/payment" element={<StripePayment />}/>
     <Route path="/userOrders" element={<AuthUserOrders />}/>
 

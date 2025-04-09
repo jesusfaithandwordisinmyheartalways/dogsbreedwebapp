@@ -213,8 +213,8 @@ for (let data of dogs_products) {
   if(response.ok) {
      setOriginalCartItems({});  
      setUserOrders(prevOrders => [...prevOrders, orderData])
-      navigate('/order-placed') 
-      window.location.href = '/order-placed'
+      navigate('/orderPlaced') 
+      window.location.href = '/orderPlaced'
   } else {
        console.log("Error message: ", result.message);
       setErrorMessage(result.message)
