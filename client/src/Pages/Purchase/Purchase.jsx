@@ -211,9 +211,10 @@ for (let data of dogs_products) {
 
   const result = await response.json();
   if(response.ok) {
-     setOriginalCartItems({});  // Reset cart after order is placed
-     setUserOrders(prevOrders => [...prevOrders, orderData])// Update the global userOrders state from DogStoreProvider
-      setTimeout(() => navigate('/order-placed'), 300) // Navigate to OrderPlaced and pass data
+     setOriginalCartItems({});  
+     setUserOrders(prevOrders => [...prevOrders, orderData])
+      navigate('/order-placed') 
+      window.location.href = '/order-placed'
   } else {
        console.log("Error message: ", result.message);
       setErrorMessage(result.message)
