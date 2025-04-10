@@ -101,7 +101,7 @@ function App() {
 
   const userAuthentication = async () => {
     try {
-      const response = await fetch('http://localhost:3001/auth/authentication',{
+      const response = await fetch('https://dogsbreedwebappserver.onrender.com/auth/authentication',{
         credentials: "include", // Ensures cookies are sent
       });
       const data = await response.json();
