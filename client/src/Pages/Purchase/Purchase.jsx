@@ -177,53 +177,58 @@ for (let data of dogs_products) {
 
 
   const userOrderSubmit = async (e) => {
-    e.preventDefault()
-   
+    e.preventDefault();
 
     const orderData = {
-      name: `${formData.firstName} ${formData.lastName}`, // Combine first & last name
-      email: formData.email,
-      address: {
-          street: formData.street,
-          city: formData.city,
-          state: formData.state,
-          zipcode: formData.zipcode,
-          country: formData.country
-      },
-      phone: formData.phone,
-      cart: orderItems,
-      pickupOption: localStorage.getItem("selectedPickupOption") || "Not Selected" // Ensure pickup option is sent
-  };
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        address: {
+            street: formData.street,
+            city: formData.city,
+            state: formData.state,
+            zipcode: formData.zipcode,
+            country: formData.country
+        },
+        phone: formData.phone,
+        cart: orderItems,
+        pickupOption: localStorage.getItem("selectedPickupOption") || "Not Selected"
+    };
 
+    try {
+        const token = getCookie('purchaseToken');
+        const response = await fetch('https://dogsbreedwebappserver.onrender.com/orders/purchase', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include',
+            body: JSON.stringify(orderData),
+        });
 
-  try {
-    const token = getCookie('purchaseToken');  // Assuming token is stored in cookies as 'authToken'
-    const response = await fetch('http://localhost:3001/orders/purchase', {
-      method: 'POST',
-      headers: {
-         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-       },
-      credentials: 'include',
-      body: JSON.stringify(orderData),
-  });
+        const result = await response.json();
+        if (!response.ok) {
+            console.log("Server responded with an error:", result.message);
+            setErrorMessage(result.message);
+        }
 
-  const result = await response.json();
-  if(response.ok) {
-    navigate('/orderPlaced') 
-     setOriginalCartItems({});  
-     setUserOrders(prevOrders => [...prevOrders, orderData])
-  } else {
-       console.log("Error message: ", result.message);
-      setErrorMessage(result.message)
-  }
-  }catch(error) {
-    console.error(error.message);
-    setErrorMessage('Something went wrong. Please try again.');
-  }
+        // Regardless of response, navigate and update
+        navigate('/orderPlaced');
+        setOriginalCartItems({});
+        setUserOrders(prevOrders => [...prevOrders, orderData]);
 
-  }
+    } catch (error) {
+        console.error("Request failed:", error.message);
+        setErrorMessage('Something went wrong. Please try again.');
 
+        // Still navigate even on request error
+        navigate('/orderPlaced');
+        setOriginalCartItems({});
+        setUserOrders(prevOrders => [...prevOrders, orderData]);
+    }
+};
+
+  
 
 
   useEffect(() => {
@@ -251,7 +256,7 @@ for (let data of dogs_products) {
 const handleGooglePay = async (paymentData) => {
   try {
     const token = getCookie('purchaseToken');
-    const response = await fetch('http://localhost:3001/stripe/create-payment-intent', {
+    const response = await fetch('https://dogsbreedwebappserver.onrender.com/stripe/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -270,7 +275,7 @@ const handleGooglePay = async (paymentData) => {
     const { tokenizationData } = paymentMethodData;
     
     // Send token and client secret to your backend for completion
-    const paymentIntentResponse = await fetch('http://localhost:3001/stripe/confirm-payment', {
+    const paymentIntentResponse = await fetch('https://dogsbreedwebappserver.onrender.com/stripe/confirm-payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -301,7 +306,7 @@ const handleGooglePay = async (paymentData) => {
  // Fetch configuration (for Stripe and Google Pay)
  const fetchConfig = async () => {
   try {
-    const response = await fetch('http://localhost:3001/config');
+    const response = await fetch('https://dogsbreedwebappserver.onrender.com/config');
     const data = await response.json();
     setConfig(data);
   } catch (error) {
