@@ -145,7 +145,7 @@ const AuthNavbar = ({ user, userLogout }) => {
                                 <div className="arrow">{activeDropdown === 'authuser' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
                             <div className="auth-dogs-navbar-links-hover-four">
                             <Link to="/userOrders" className="auth-link-section-auth-user"><div>Orders</div></Link>
-                            <Link to="/update-profile" className="auth-link-section-auth-user"><div>Update Profile</div></Link>
+            
                             <Link to="/logout" className="auth-link-section-auth-user"><div>Logout</div></Link>
                     </div>
     </div>
