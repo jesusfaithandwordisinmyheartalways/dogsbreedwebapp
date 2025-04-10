@@ -65,17 +65,21 @@ const SearchBar = () => {
 
      // Handle search icon click
      const textFilteredSearch = () => {
-      if (search.trim() !== '') {
+        if (search.trim() !== '') {
           setShowSearch(false);
           navigate(`/category?search=${search}`);
-      }
-  };
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 Add this
+        }
+      };
   
-  const searchSuggestionsClick = (suggestion) => {
-      setSearch(suggestion);
-      setSuggestions([]);
-      navigate(`/category?search=${suggestion}`);
-  };
+      const searchSuggestionsClick = (suggestion) => {
+        setSearch(suggestion);
+        setSuggestions([]);
+        navigate(`/category?search=${suggestion}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 Add this
+      };
+
+
 
 
 
@@ -85,9 +89,12 @@ const SearchBar = () => {
      <div className={'search-input-container'}>
        <div className={'search-input-wrapper'}>
         <div className='input-user'>
-           <div><input value={search} onChange={(e) =>  setSearch(e.target.value)} placeholder='Search' ></input></div>
+           <div><input value={search} onChange={(e) =>  setSearch(e.target.value)} placeholder='Search Dog Breed' ></input></div>
             <div><Search onClick={textFilteredSearch} className='search-icon' size={38} /></div>
             </div>
+
+
+            
 
 
 

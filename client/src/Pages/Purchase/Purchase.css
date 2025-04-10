@@ -190,3 +190,21 @@
       transform: rotate(1deg);
     }
   }
+
+
+
+
+
+
+
+
+
+  .google-pay-section {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    top:0px;
+    left: 75px;
+ 
+  }

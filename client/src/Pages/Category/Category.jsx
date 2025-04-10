@@ -162,11 +162,17 @@ const Category = () => {
 
  // Effect to apply filters whenever user changes selection
  useEffect(() => {
-  applyFilters();
-},  [search, selectedCategories, selectedSubCategories, selectedBrands, selectedSizes, selectedDiscounts, sortType, minPrice, maxPrice]);
-
-
-
+   applyFilters(); // filters first
+ }, [search, selectedCategories, selectedSubCategories, selectedBrands, selectedSizes, selectedDiscounts, sortType, minPrice, maxPrice]);
+ 
+ // After filteredProducts updates, scroll to top
+ useEffect(() => {
+   if (filteredProducts.length > 0) {
+     setTimeout(() => {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+     }, 100); // short delay to allow render
+   }
+ }, [filteredProducts]);
 
 
 
@@ -186,6 +192,20 @@ useEffect(() => {
 }, []);
 
 
+
+useEffect(() => {
+   window.scrollTo({
+     top: 0,
+     behavior: 'smooth'
+   });
+ }, [filteredProducts]);
+
+
+
+
+ useEffect(() => {
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+ }, [search]);
 
 
   return (

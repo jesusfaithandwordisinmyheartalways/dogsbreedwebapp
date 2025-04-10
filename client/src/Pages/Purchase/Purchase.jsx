@@ -7,7 +7,7 @@ import './Purchase.css'
 import { DogStoreContext } from '../../Context/DogStoreProvider'
 import { useNavigate } from "react-router-dom";
 import { dogs_products } from '../../Components/ArrayData/adoptdogs';
-
+import GooglePayButton from '@google-pay/button-react'
 
 
 
@@ -30,7 +30,7 @@ const Purchase = () => {
     const [removeAddress, setRemoveAddress] = useState([])
     const [editAddressFormVisible, setEditAddressFormVisible] = useState(false)
     const [disbledStripe, setDisableStripe] = useState(true)
-
+    const [config, setConfig] = useState(null); // Store configuration data
 
 
 
@@ -236,7 +236,86 @@ for (let data of dogs_products) {
 
 
 
-  
+          const formattedAmount = Number(TotalCartAmount).toFixed(2);
+          const totalAmount = Number(TotalCartAmount);
+        if (!isNaN(totalAmount)) {
+          const formattedAmount = isNaN(TotalCartAmount) ? "0.00" : TotalCartAmount.toFixed(2);
+        } else {
+        console.error("TotalCartAmount is not a number:", TotalCartAmount);
+        }
+          
+
+
+
+// Function to handle Google Pay Button onClick
+const handleGooglePay = async (paymentData) => {
+  try {
+    const token = getCookie('purchaseToken');
+    const response = await fetch('http://localhost:3001/stripe/create-payment-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        amount: TotalCartAmount() // Send the total amount for the order
+      })
+    });
+
+    const result = await response.json();
+    const { clientSecret } = result;
+
+    // Process the payment using the Google Pay data
+    const { paymentMethodData } = paymentData;
+    const { tokenizationData } = paymentMethodData;
+    
+    // Send token and client secret to your backend for completion
+    const paymentIntentResponse = await fetch('http://localhost:3001/stripe/confirm-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        clientSecret,
+        paymentMethod: tokenizationData.token
+      })
+    });
+
+    const paymentResult = await paymentIntentResponse.json();
+    if (paymentResult.success) {
+      navigate('/orderPlaced');
+    } else {
+      setErrorMessage(paymentResult.message);
+    }
+  } catch (error) {
+    console.error(error);
+    setErrorMessage('Payment failed. Please try again.');
+  }
+};
+
+
+
+
+
+ // Fetch configuration (for Stripe and Google Pay)
+ const fetchConfig = async () => {
+  try {
+    const response = await fetch('http://localhost:3001/config');
+    const data = await response.json();
+    setConfig(data);
+  } catch (error) {
+    console.error("Error fetching config:", error);
+  }
+};
+
+useEffect(() => {
+  fetchConfig(); // Fetch the configuration on component mount
+}, []);
+
+
+
+
   return (
  <>
 
@@ -250,9 +329,8 @@ for (let data of dogs_products) {
                   <div>
                     <label>First Name:</label>
                     <input ref={currentInput} type="text" name="firstName" value={formData.firstName} onChange={userChange} required />
-                  </div>
 
-                  <div>
+                    <div>
                     <label>Last Name:</label>
                     <input type="text" name="lastName" value={formData.lastName} onChange={userChange} required />
                   </div>
@@ -262,6 +340,14 @@ for (let data of dogs_products) {
                     <label>Email:</label>
                     <input type="email" name="email" value={formData.email} onChange={userChange} required />
                   </div>
+
+
+
+                  </div>
+
+                 
+
+               
 
 
                   <div>
@@ -310,6 +396,19 @@ for (let data of dogs_products) {
 
 
               </form>
+
+
+
+
+              
+
+
+
+
+
+
+
+
             </div>
 
 
@@ -389,14 +488,78 @@ for (let data of dogs_products) {
                               <div className='form-error-message'><p>Please fill out form before proceeding to payment</p></div>
                             )}
                       </div>
+
+
                   </div>
 
 
 
 
 
+
+                  <div className='google-pay-section'    >
+                  <div>
+                          <GooglePayButton
+                            environment="PRODUCTION"
+                            paymentRequest={{
+                              apiVersion: 2,
+                              apiVersionMinor: 0,
+                              allowedPaymentMethods: [
+                                {
+                                  type: 'CARD',
+                                  parameters: {
+                                    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                                    allowedCardNetworks: ['MASTERCARD', 'VISA']
+                                  },
+                                  tokenizationSpecification: {
+                                    type: 'PAYMENT_GATEWAY',
+                                    parameters: {
+                                      gateway: 'stripe',
+                                      "stripe:version": "2022-08-01",
+                                      'stripe:publishableKey': process.env.STRIPE_PUBLISHABLE_KEY,
+                                      gatewayMerchantId:  process.env.STRIPE_MERCHANT_ID,
+                                    }
+                                  }
+                                }
+                              ],
+                              merchantInfo: {
+                                merchantId: process.env.GOOGLE_PAY_MERCHANT_ID,
+                                merchantName: process.env.GOOGLE_PAY_MERCHANT_NAME
+                              },
+                              transactionInfo: {
+                                totalPriceStatus: 'FINAL',
+                                totalPriceLabel: 'Total',
+                                totalPrice: formattedAmount,
+                                currencyCode: 'USD',
+                                countryCode: 'US'
+                              }
+                            }}
+                            onLoadPaymentData={handleGooglePay}
+
+                />
+                            
+                    </div>
+
+
+                      </div>
+
+
+
+                  
+
+
+
+
+               
+
+
+
                 </div>
 
+
+
+
+                              
 
 
 

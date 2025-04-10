@@ -6,6 +6,8 @@
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
 
+
+
 dotenv.config();
 
 
@@ -13,34 +15,24 @@ dotenv.config();
 const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
-
 const StripeControllerFunction = async (req, res) => {
-    try {
-        const { amount } = req.body; // Extract the amount from the client request
-    
-        if (!amount || isNaN(amount) || amount <= 0) {
-          return res.status(400).send({ error: { message: "Invalid amount" } });
-        }
-    
-        // Create a payment intent for the given amount in USD (amount in cents, so multiply by 100)
-        const paymentIntent = await stripeInstance.paymentIntents.create({
-          currency: "usd",  // Currency for the payment
-          amount: amount * 100,  // Convert the amount to cents
-          automatic_payment_methods: { enabled: true },  // Enable automatic payment methods (cards)
-        });
-    
-        // Send back the client secret for the payment
-        res.send({
-          clientSecret: paymentIntent.client_secret,
-        });
-      } catch (error) {
-        // If an error occurs, send a bad request with the error message
-        res.status(400).send({
-          error: {
-            message: error.message,  // Send the error message to the client
-          },
-        });
-      }
+  try {
+    const { amount } = req.body;
+
+    // Create a payment intent for Stripe or Google Pay (both use the same endpoint)
+    const paymentIntent = await stripeInstance.paymentIntents.create({
+      amount: amount * 100, // Stripe requires the amount in cents
+      currency: 'usd',
+      payment_method_types: ['card'], // Includes Google Pay as a payment method
+    });
+
+    res.status(200).json({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (error) {
+    console.error("Error creating payment intent:", error);
+    res.status(500).send({ error: 'Failed to create payment intent.' });
+  }
 
 }
 

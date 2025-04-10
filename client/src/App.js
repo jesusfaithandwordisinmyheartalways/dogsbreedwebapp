@@ -22,6 +22,7 @@ import OrderPlaced from "./Pages/OrderPlaced/OrderPlaced";
 import StripePayment from "./Pages/StripePayment/StripePayment";
 import Category from "./Pages/Category/Category";
 import AuthUserOrders from "./Pages/AuthUserOrders/AuthUserOrders";
+import GooglePayConfirm from "./Pages/GooglePayConfirm/GooglePayConfirm";
 
 
 
@@ -200,6 +201,7 @@ useEffect(() => {
     <Route path="/orderPlaced" element={<OrderPlaced />}/>
     <Route path="/payment" element={<StripePayment />}/>
     <Route path="/userOrders" element={<AuthUserOrders />}/>
+    <Route path="/googlepayconfirm" element={<GooglePayConfirm />}/>
 
 
 
