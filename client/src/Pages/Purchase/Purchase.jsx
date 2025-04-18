@@ -8,6 +8,8 @@ import { DogStoreContext } from '../../Context/DogStoreProvider'
 import { useNavigate } from "react-router-dom";
 import { dogs_products } from '../../Components/ArrayData/adoptdogs';
 import GooglePayButton from '@google-pay/button-react'
+import { SharedContext } from '../../SharedContext/AppContextProvider.jsx' ;
+
 
 
 
@@ -33,10 +35,11 @@ const Purchase = () => {
     const [config, setConfig] = useState(null); // Store configuration data
 
 
-
-
     const { orderItems, setOrderItems,  selectedSizes, TotalCartAmountItems, 
-      TotalCartAmount, setOriginalCartItems, userOrders, setUserOrders} = useContext(DogStoreContext)
+      TotalCartAmount, setOriginalCartItems} = useContext(DogStoreContext)
+
+      const { userOrders, setUserOrders } = useContext(SharedContext)
+
 
 
 
