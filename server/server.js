@@ -15,6 +15,8 @@ import reviewRoutes from './routes/reviewsRoute.js'
 import orderRoutes from './routes/orderlRoute.js'
 import stripeRoutes from './routes/stripeRoute.js'
 import adminLoginRoutes from './routes/adminRoute.js'
+import adminAuthenticationRoutes from './routes/adminAuth.js'
+import adminOrders from './routes/adminOrders.js'
 import connectMongoDB from './configuration/mongodb.js'
 import { resolve } from 'path';
 
@@ -32,7 +34,7 @@ app.use(cookieParser());
 
 app.use(cors({
   credentials:true,
-  origin:'http://localhost:3000',
+  origin:['http://localhost:3000', 'http://localhost:3002']
 }))
 
 app.use(helmet());
@@ -53,7 +55,9 @@ app.use('/exit', logoutRoutes)
 app.use('/reviews', reviewRoutes)
 app.use('/stripe', stripeRoutes)
 app.use('/orders', orderRoutes)
+app.use('/orders', adminOrders)
 app.use('/admin', adminLoginRoutes)
+app.use('/adminAuth', adminAuthenticationRoutes)
 
 
 

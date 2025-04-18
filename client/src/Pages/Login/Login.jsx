@@ -21,6 +21,8 @@ const Login = ({ setAuthUser}) => {
     const navigate = useNavigate();
     const [hoveredLink, setHoveredLink] = useState(null)
     const [passwordIcon, setPasswordIcon ] = useState(false)
+    const [buttonSpinner, setButtonSpinner] = useState(false) // Add state for button spinner
+    
     
     
 
@@ -35,6 +37,9 @@ const Login = ({ setAuthUser}) => {
             loginPassword: password,
             loginEmail: email
         }
+
+        setButtonSpinner(true); // Show spinner when request is sent
+
 
         if (!username || !password || !email) {
             setError("Please enter  your credentials username, email and password.");
@@ -54,10 +59,10 @@ const Login = ({ setAuthUser}) => {
                 console.log(data); // Debugging output
                 setAuthUser({ firstName: data.user.firstName, username: data.user.username });
                 setSuccessMessage(data.message);  // Set the success message
-                sessionStorage.setItem("authUser", JSON.stringify(data.user)); // Save to sessionStorage
+                localStorage.setItem("authUser", JSON.stringify(data.user)); // Save to sessionStorage
                 // ✅ Force App.js to update UI
                 window.dispatchEvent(new Event("authUserChanged"));
-                navigate('/');  // Redirect after login
+                setTimeout(() => navigate('/'), 3000)  // Redirect after login
               } else {
                 setError(data.message);
                 setSuccessMessage("");  // Reset success message if login fails
@@ -130,11 +135,29 @@ useEffect(() => {
               <input onChange={(e) => setEmail(e.target.value)} type="email" value={email} placeholder='Email' required></input>
             </div>
                     
-                  <div className='login-error-msg'> {error && ( <div><p>{error}</p></div> )} </div>
-                  {successMessage && <div className="success-message">{successMessage}</div>}
+               
 
 
-            <div><button type="submit">Sign In</button></div>
+             {/*------implement button loading spinner feature */}
+                   <div> <button type='submit' disabled={buttonSpinner}>
+                                    {buttonSpinner ? (
+                                        <span className="spinner"></span> 
+                                    ) : (
+                                        'Login'
+                                    )}
+                                </button>
+                            </div>
+                           
+
+
+
+
+
+                            <div className='login-error-msg'> {error && ( <div><p>{error}</p></div> )} </div>
+                            {successMessage && <div className="success-message">{successMessage}</div>}
+
+
+
 
 
             <div className='register'><a href="/register" onClick={(e) => {e.preventDefault(); navigate('/register')}}>Create A Profile</a></div>

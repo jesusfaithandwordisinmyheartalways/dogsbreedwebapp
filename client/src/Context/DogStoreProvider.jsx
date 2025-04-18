@@ -228,7 +228,7 @@ const DogStoreContextValue = { count, setUserCount, search,  setSearch, showSear
    selectedSizes, setSelectedSizes, 
  updateSelectedSize, updateLocalStorage,  originalCartItems,
  setOriginalCartItems, TotalCartAmountItems, TotalCartAmount, quantityIncrease, quantityDecrease,
- AddCartItems, RemoveCartItems , orderItems, setOrderItems, userOrders, setUserOrders,
+ AddCartItems, RemoveCartItems , orderItems, setOrderItems, 
 CheckoutOrderItems, buttonOptions, 
  setButtonOptions, }
 

@@ -31,7 +31,7 @@ const Logout = ({ onLogout}) => {
                 if(response.status === 200) {
                     console.log(result.message)
                     onLogout()// Update authUser state in parent (App component)
-                    sessionStorage.removeItem("authUser"); // Clear sessionStorage on logout
+                    localStorage.removeItem("authUser"); // Clear sessionStorage on logout
                     setTimeout(() => navigate('/'), 300)
                 } else {
                     console.error('Logout failed');

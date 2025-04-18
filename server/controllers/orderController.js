@@ -40,8 +40,7 @@ const UserOrder = async (req, res) => {
         await newOrderUser.save();
 
         // Generate JWT token
-        const authToken = jsonWebToken.sign({ name, address, phone,  cart, pickupOption }, process.env.JWT_SECRET, { expiresIn: '365d' }
-        );
+        const authToken = jsonWebToken.sign({ name, address, phone,  cart, pickupOption }, process.env.JWT_SECRET, { expiresIn: '365d' } );
 
         // Set token as a secure cookie
         res.cookie('purchaseToken', authToken, {

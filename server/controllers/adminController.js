@@ -18,7 +18,12 @@ dotenv.config();
 
 const UserAdminLoginFunction = async (req, res) => {
     const { adminUsername, adminPassword, adminEmail } = req.body;
+    console.log('Admin Login Attempt:');
+    console.log('Username:', adminUsername);
+    console.log('Password:', adminPassword); // ⚠️ Be careful in production!
+    console.log('Email:', adminEmail);
 
+    
     try {
         // Check if the admin already exists by username or email
         const existingAdmin = await AdminLoginUser.findOne({ $or: [{ adminUsername }, { adminEmail }],});
@@ -39,17 +44,13 @@ const UserAdminLoginFunction = async (req, res) => {
               maxAge: 3600000, // 1 hour
             });
     
-            return res.status(200).json({
-              success: true,
-              message: 'Admin logged in successfully',
-            });
+            return res.status(200).json({success: true, message: 'Admin logged in successfully'});
           } else {
             return res.status(400).json({ success: false, message: 'Invalid credentials' });
           }
         } else {
           // Admin doesn't exist, create a new admin account
     
-
 
           // Hash the password before saving
           const hashedPassword = await bcrypt.hash(adminPassword, 10);
@@ -75,11 +76,13 @@ const UserAdminLoginFunction = async (req, res) => {
             maxAge: 3600000, // 1 hour
           });
     
-
+          console.log('admin username: ', adminUsername)
+          console.log('admin password: ', adminPassword)
+          console.log('admin email: ', adminEmail)
           return res.status(200).json({success: true, message: 'Admin registered and logged in successfully',});
         }
       } catch (error) {
-        console.error('Admin login/registration error:', error);
+        console.error('Admin login registration error:', error);
         res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
       }
 

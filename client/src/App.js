@@ -1,7 +1,7 @@
 
 
-import React, {useState, useEffect, useContext} from "react";
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Register from './Pages/Register/Register';
@@ -68,7 +68,7 @@ function App() {
 
   // Check authentication status from sessionStorage on mount
   useEffect(() => {
-    const storedUser = sessionStorage.getItem("authUser");
+    const storedUser = localStorage.getItem("authUser");
     if (storedUser) {
       setAuthUser(JSON.parse(storedUser)); // Retrieve and set the user data
     }
@@ -79,7 +79,7 @@ function App() {
 
   useEffect(() => {
     const checkAuthUser = () => {
-        const storedUser = sessionStorage.getItem("authUser");
+        const storedUser = localStorage.getItem("authUser");
         if (storedUser) {
             setAuthUser(JSON.parse(storedUser)); 
         } else {
@@ -108,15 +108,15 @@ function App() {
       console.log("Auth response:", data); // Debug log
       if (data.authenticated) {
         setAuthUser(data.user);
-        sessionStorage.setItem("authUser", JSON.stringify(data.user)); // Store in sessionStorage
+        localStorage.setItem("authUser", JSON.stringify(data.user)); // Store in sessionStorage
       } else {
         setAuthUser(null);
-        sessionStorage.removeItem("authUser"); // Clear from sessionStorage
+        localStorage.removeItem("authUser"); // Clear from sessionStorage
       }
     } catch (error) {
       console.error("Error checking authentication:", error);
       setAuthUser(null);
-      sessionStorage.removeItem("authUser"); // Clear if error occurs
+      localStorage.removeItem("authUser"); // Clear if error occurs
     }
   }
 
@@ -138,7 +138,7 @@ function App() {
 
     const authenticationLogout = () => {
     setAuthUser(null)
-    sessionStorage.removeItem("authUser"); // Clear on logout
+    localStorage.removeItem("authUser"); // Clear on logout
     navigate('/')
 }
 
@@ -146,12 +146,12 @@ function App() {
 
 
 useEffect(() => {
-  sessionStorage.setItem("lastRoute", location.pathname);
+  localStorage.setItem("lastRoute", location.pathname);
 }, [location.pathname]);
 
 
 useEffect(() => {
-  const lastRoute = sessionStorage.getItem("lastRoute");
+  const lastRoute = localStorage.getItem("lastRoute");
   if (lastRoute && lastRoute !== "/logout") {
       navigate(lastRoute);
   }

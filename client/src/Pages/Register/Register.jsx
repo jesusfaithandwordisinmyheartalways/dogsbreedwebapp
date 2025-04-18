@@ -24,6 +24,7 @@ const Register = () => {
     const navigate = useNavigate()
     const [hoveredLink, setHoveredLink] = useState(null)
     const [passwordIcon, setPasswordIcon ] = useState(false)
+    const [buttonSpinner, setButtonSpinner] = useState(false) // Add state for button spinner
 
    
 
@@ -38,6 +39,9 @@ const Register = () => {
     const userRegister = async (event) => {
             event.preventDefault()
             const User_Register_Data = { name, lastName, username, password, email }
+
+            setButtonSpinner(true); // Show spinner when request is sent
+
 
             try {
                 console.log("Sending registration request:", User_Register_Data);
@@ -57,6 +61,8 @@ const Register = () => {
             }catch(error) {
                 console.error("Register Error:", error)
                 setError('error has occurred, please check your network')
+            } finally {
+                setButtonSpinner(false); // Hide spinner once request is complete
             }
 
     }
@@ -151,8 +157,21 @@ const Register = () => {
                         
                             <div className='error-msg'> { error && ( <div><p> {error} </p></div> )} </div>
                            
-                           <div><button type='submit'>Create Account</button></div>
+
+
+                           {/*------implement button loading spinner feature */}
+                           <div> <button type='submit' disabled={buttonSpinner}>
+                                    {buttonSpinner ? (
+                                        <span className="spinner"></span> 
+                                    ) : (
+                                        'Create Account'
+                                    )}
+                                </button>
+                            </div>
                            
+
+
+
                            <div className='register'><a href="/login" 
                            onClick={(e) => { e.preventDefault(); navigate('/login')}}>Login</a>
                            </div>

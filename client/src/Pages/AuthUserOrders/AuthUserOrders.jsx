@@ -5,7 +5,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './AuthUserOrders.css';
 import { DogStoreContext } from '../../Context/DogStoreProvider';
-
+import { SharedContext } from '../../SharedContext/AppContextProvider.jsx' ;
 
 
 
@@ -16,7 +16,10 @@ import { DogStoreContext } from '../../Context/DogStoreProvider';
 const AuthUserOrders = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { userOrders, setUserOrders } = useContext(DogStoreContext);
+    const { userOrders, setUserOrders } = useContext(SharedContext);
+
+
+
 
 
     const getCookie = (name) => {
@@ -32,6 +35,8 @@ const AuthUserOrders = () => {
      const userInfo = userOrders.find(order => order.name && order.email);
      const userDogOrders = userOrders.filter(data => data.dogName && data.image[0] && data.size && data.quantity);
 
+
+
      useEffect(() => {
          if (userOrders.length > 0) {
              setLoading(false);
@@ -41,6 +46,10 @@ const AuthUserOrders = () => {
          }
      }, [userOrders]);
 
+
+
+
+     
 
     useEffect(() => {
         const fetchUserOrders = async () => {
