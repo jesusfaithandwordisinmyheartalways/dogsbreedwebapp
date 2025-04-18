@@ -181,8 +181,10 @@ for (let data of dogs_products) {
 
   const userOrderSubmit = async (e) => {
     e.preventDefault()
-   
+      
+    if(!orderForm()) {return}
 
+  
     const orderData = {
       name: `${formData.firstName} ${formData.lastName}`, // Combine first & last name
       email: formData.email,
@@ -213,8 +215,7 @@ for (let data of dogs_products) {
 
   const result = await response.json();
   if(response.ok) {
-    navigate('/orderPlaced') 
-     setOriginalCartItems({});  
+    setOriginalCartItems({});  
      setUserOrders(prevOrders => [...prevOrders, orderData])
   } else {
        console.log("Error message: ", result.message);
@@ -224,6 +225,11 @@ for (let data of dogs_products) {
     console.error(error.message);
     setErrorMessage('Something went wrong. Please try again.');
   }
+
+
+    navigate('/orderPlaced') 
+
+    
 
   }
 
