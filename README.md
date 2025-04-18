@@ -35,3 +35,7 @@ Screenshots:
 ![filters two](https://github.com/user-attachments/assets/541e5143-c1bd-489f-a976-25aa4fd9a0b9)
 ![sidebar cart](https://github.com/user-attachments/assets/96348acb-162d-4b68-9e67-a55752cd8701)
 ![empty cart](https://github.com/user-attachments/assets/c9fb4883-f571-405d-a242-d9b33e23e348)
+
+
+![user cart](https://github.com/user-attachments/assets/848103c1-c559-43ba-80ef-5f851b34312d)
+
