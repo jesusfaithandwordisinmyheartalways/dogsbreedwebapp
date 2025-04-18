@@ -39,3 +39,21 @@ Screenshots:
 
 ![user cart](https://github.com/user-attachments/assets/848103c1-c559-43ba-80ef-5f851b34312d)
 
+
+
+
+![order page](https://github.com/user-attachments/assets/242241ce-9d42-40a3-88dd-2417e9ce07bf)
+
+![Order confirmation](https://github.com/user-attachments/assets/7a66e0b3-9132-4e7b-b86f-cfe991178d6a)
+
+![Order history](https://github.com/user-attachments/assets/1ba63d44-6780-4417-ad8f-f53f069b0790)
+
+
+
+
+
+
+Website:
+https://dogsbreedwebappclient.onrender.com/
+
+
