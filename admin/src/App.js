@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
       const adminUserAuthentication = async () => {
           try {
-            const response = await fetch('http://localhost:3001/adminAuth/adminAuthentication',{
+            const response = await fetch('https://dogsbreedwebappserver.onrender.com/adminAuth/adminAuthentication',{
               credentials: 'include',
             });
               const data = await response.json()
