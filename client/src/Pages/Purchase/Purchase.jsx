@@ -214,23 +214,19 @@ for (let data of dogs_products) {
   });
 
   const result = await response.json();
-  if(response.ok) {
-    setOriginalCartItems({});  
-     setUserOrders(prevOrders => [...prevOrders, orderData])
-  } else {
-       console.log("Error message: ", result.message);
-      setErrorMessage(result.message)
-  }
-  }catch(error) {
-    console.error(error.message);
-    setErrorMessage('Something went wrong. Please try again.');
-  }
-
-
-    navigate('/orderPlaced') 
-
+  if (!response.ok) {
+    console.log("Server responded with an error:", result.message);
+     setErrorMessage(result.message);
+    }
+        // Regardless of response, navigate and update
+        navigate('/orderPlaced');
+        setOriginalCartItems({});
+        setUserOrders(prevOrders => [...prevOrders, orderData]);
+    } catch (error) {
+        console.error("Request failed:", error.message);
+        setErrorMessage('Something went wrong. Please try again.');
+       }
     
-
   }
 
 
