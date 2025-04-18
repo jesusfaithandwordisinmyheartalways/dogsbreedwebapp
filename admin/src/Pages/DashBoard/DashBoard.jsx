@@ -59,7 +59,7 @@ const DashBoard = () => {
 
       try {
         const token = getCookie('authToken')
-        const response = await fetch('http://localhost:3001/user-orders', {
+        const response = await fetch('https://dogsbreedwebappserver.onrender.com/user-orders', {
            method: 'GET',
            headers: {
             'Authorization' : `Bearer ${token}`,
