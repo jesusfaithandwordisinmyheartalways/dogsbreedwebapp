@@ -182,6 +182,8 @@ for (let data of dogs_products) {
   const userOrderSubmit = async (e) => {
     e.preventDefault();
 
+    if(!orderForm()) {return}
+
     const orderData = {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
@@ -210,11 +212,10 @@ for (let data of dogs_products) {
         });
 
         const result = await response.json();
-        if (!response.ok) {
+       if (!response.ok) {
             console.log("Server responded with an error:", result.message);
-            setErrorMessage(result.message);
+             setErrorMessage(result.message);
         }
-
         // Regardless of response, navigate and update
         navigate('/orderPlaced');
         setOriginalCartItems({});
@@ -223,12 +224,11 @@ for (let data of dogs_products) {
     } catch (error) {
         console.error("Request failed:", error.message);
         setErrorMessage('Something went wrong. Please try again.');
-
-        // Still navigate even on request error
-        navigate('/orderPlaced');
-        setOriginalCartItems({});
-        setUserOrders(prevOrders => [...prevOrders, orderData]);
+      
     }
+
+
+
 };
 
   

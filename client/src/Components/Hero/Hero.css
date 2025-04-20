@@ -2,61 +2,72 @@
 
 
 
-
-
-
-
-
 .hero-container {
     width: 100%;
+    height: 100vh;
     overflow: hidden;
-    z-index: -1000;
-}
-
-.hero-wrapper {
-    background: navy;
+    animation: fadeInHero 3s ease-in-out forwards;
+  }
+  
+  .hero-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     margin: 0 auto;
     max-width: 1500px;
-    height: 510px;
+    height: 100%;
     opacity: 0;
-    transform: rotateY(180deg); /* Start with an off-screen position */
-    animation: spinIn 1.5s ease-out forwards; /* Animation applied here */
-    z-index: -1000;
-
-}
-
-.hero-wrapper img {
+    transform: rotateY(180deg);
+    animation: spinIn 1.5s ease-out 0.5s forwards;
+  }
+  
+  .hero-wrapper img {
     width: 650px;
     object-fit: contain;
-    z-index: -1000;
-
-}
-
-.hero-wrapper h3 {
-    color: white;
+  }
+  
+  .hero-wrapper h3 {
+    color: black;
     font-size: 3rem;
-    z-index: -1000;
-
-}
-
-/* Spin-in Animation */
-@keyframes spinIn {
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slideInFromLeft 1.5s ease-out 1.8s forwards;
+  }
+  
+  /* Hero fade-in */
+  @keyframes fadeInHero {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Image flip effect */
+  @keyframes spinIn {
     0% {
-        opacity: 0;
-        transform: rotateY(180deg); /* Start off-screen with rotation */
-        z-index: -1000;
+      opacity: 0;
+      transform: rotateY(180deg);
     }
     50% {
-        opacity: 1;
-        transform: rotateY(90deg); /* Halfway point, it's rotated towards the viewer */
-        z-index: -1000;
+      opacity: 1;
+      transform: rotateY(90deg);
     }
     100% {
-        opacity: 1;
-        transform: rotateY(0deg); /* End at the normal position */
-        z-index: -1000;
+      opacity: 1;
+      transform: rotateY(0deg);
     }
-}
+  }
+  
+  /* Slide h3 from left */
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
