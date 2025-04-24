@@ -34,11 +34,7 @@ app.use(cookieParser());
 
 app.use(cors({
   credentials:true,
-<<<<<<< HEAD
   origin:'https://dogsbreedwebappclient.onrender.com',
-=======
-  origin:['http://localhost:3000', 'http://localhost:3002']
->>>>>>> 3ce0366 (data)
 }))
 
 app.use(helmet());

@@ -1,0 +1,100 @@
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
+
+
+
+
+.CountUpAnimation-Container {
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    padding: 40px 20px;
+  }
+  
+
+  .CountUpAnimation-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 40px;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: transform 0.8s ease, opacity 1s ease;
+    color: white;
+  }
+
+
+  
+  .CountUpAnimation-Wrapper.animate-header {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+
+  .CountUpAnimation-Wrapper h3 {
+    color:white;
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+  }
+  
+
+
+
+  .CountUpAnimation-Wrapper-Two {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 1300px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+
+
+  
+  .CountBox {
+    padding: 30px 40px;
+    border-radius: 16px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: white;
+    min-width: 250px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+
+  
+  .box-one {
+    background: linear-gradient(135deg, #3e8ef7, #1f1c2c);
+    box-shadow: 0 4px 30px rgba(62, 142, 247, 0.5);
+    padding: 3em;
+
+  }
+  
+  .box-two {
+    background: linear-gradient(135deg, #34d399, #0f766e);
+    box-shadow: 0 4px 30px rgba(52, 211, 153, 0.5);
+    padding: 3em;
+
+  }
+  
+  .box-three {
+    background: linear-gradient(135deg, #f59e0b, #78350f);
+    box-shadow: 0 4px 30px rgba(245, 158, 11, 0.5);
+    padding: 3em;
+  }
+  
+
+
+  .count-number {
+    font-size: 2.2rem;
+    margin-top: 10px;
+    font-weight: bold;
+  }
