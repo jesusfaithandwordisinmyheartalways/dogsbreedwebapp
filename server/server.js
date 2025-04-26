@@ -17,6 +17,7 @@ import stripeRoutes from './routes/stripeRoute.js'
 import adminLoginRoutes from './routes/adminRoute.js'
 import adminAuthenticationRoutes from './routes/adminAuth.js'
 import adminOrders from './routes/adminOrders.js'
+import userImageUpload from './routes/uploadImages.js'
 import connectMongoDB from './configuration/mongodb.js'
 import { resolve } from 'path';
 
@@ -56,6 +57,7 @@ app.use('/reviews', reviewRoutes)
 app.use('/stripe', stripeRoutes)
 app.use('/orders', orderRoutes)
 app.use('/orders', adminOrders)
+app.use('/upload', userImageUpload)
 app.use('/admin', adminLoginRoutes)
 app.use('/adminAuth', adminAuthenticationRoutes)
 

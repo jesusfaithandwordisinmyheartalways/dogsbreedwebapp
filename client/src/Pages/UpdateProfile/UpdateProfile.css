@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+.UpdateProfile-Container {
+    width: 100%;
+    overflow: hidden;
+    background:whitesmoke
+}
+
+
+.UpdateProfile-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+    max-width: 1300px;
+
+}
+
+
+
+
+
+.Upload-Image-Circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .Upload-Button {
+    cursor: pointer;
+    color: black;
+    text-align: center;
+  }

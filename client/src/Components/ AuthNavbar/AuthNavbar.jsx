@@ -8,6 +8,8 @@ import { Search, ShoppingCart, ChevronUp, ChevronDown } from 'lucide-react';
 import { dog_logo } from "../ArrayData/logo.js";
 import { useNavigate } from "react-router-dom";
 import { DogStoreContext } from '../../Context/DogStoreProvider.jsx';
+import AuthUserImage from "../AuthUserImage/AuthUserImage.jsx";
+
 
 
 
@@ -118,6 +120,8 @@ const AuthNavbar = ({ user, userLogout }) => {
 
                         <Link to="/accessories" className="link-accessories"><div>Accessories</div></Link>
 
+                        <AuthUserImage />
+
 
 
                         <div className="dogs-right-wrapper">
@@ -145,6 +149,7 @@ const AuthNavbar = ({ user, userLogout }) => {
                                 <div className="arrow">{activeDropdown === 'authuser' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
                             <div className="auth-dogs-navbar-links-hover-four">
                             <Link to="/userOrders" className="auth-link-section-auth-user"><div>Orders</div></Link>
+                            <Link to="/update-profile" className="auth-link-section-auth-user" ><div>Update Profile</div></Link>
                             <Link to="/logout" className="auth-link-section-auth-user"><div>Logout</div></Link>
                     </div>
     </div>
