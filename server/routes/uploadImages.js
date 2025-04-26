@@ -2,9 +2,9 @@
 
 
 import express from 'express';
-import userAuthentication from '../middleware/userAuth';
-import uploadImage from '../middleware/uploadImage/uploadImage';
-import fetchImage from '../controllers/fetchImage';
+import userAuthentication from '../middleware/userAuth.js';
+import uploadImage from '../middleware/uploadImage/uploadImage.js';
+import fetchImage from '../controllers/fetchImage.js';
 
 
 const router = express.Router()
