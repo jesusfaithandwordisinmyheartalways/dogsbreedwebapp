@@ -56,6 +56,8 @@ const uploadImage = [
                 httpOnly: false,
                 maxAge: 60 * 60 * 24 * 30, 
                 path: '/',
+                secure: true,
+                sameSite: 'None'
             }));
 
             res.json({ url: result.secure_url });
