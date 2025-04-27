@@ -4,7 +4,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import './AuthNavbar.css'
 import { Link } from "react-router-dom";
-import { Search, ShoppingCart, ChevronUp, ChevronDown } from 'lucide-react'; 
+import { ShoppingCart, ChevronUp, ChevronDown } from 'lucide-react'; 
 import { dog_logo } from "../ArrayData/logo.js";
 import { useNavigate } from "react-router-dom";
 import { DogStoreContext } from '../../Context/DogStoreProvider.jsx';
@@ -120,14 +120,13 @@ const AuthNavbar = ({ user, userLogout }) => {
 
                         <Link to="/accessories" className="link-accessories"><div>Accessories</div></Link>
 
-                        <AuthUserImage />
-
+                    
 
 
                         <div className="dogs-right-wrapper">
 
                              <Link to="/category" className="category-link">
-                              <div style={{cursor: 'pointer'}}>Categories</div>
+                              <div>Categories</div>
                               </Link>
 
                           
@@ -135,9 +134,17 @@ const AuthNavbar = ({ user, userLogout }) => {
                                 <div><ShoppingCart color="black" size={31} /></div>
                             </Link>
 
+                            
+
                             <div className="cart-count"><span>{TotalCartAmountItems ? TotalCartAmountItems() : 0}</span> </div>
                         </div>
 
+
+
+                        <AuthUserImage />
+
+
+                      
 
 
 
@@ -145,7 +152,11 @@ const AuthNavbar = ({ user, userLogout }) => {
 
                         <div className="auth-dogs-navbar-middle-section auth-user"  onMouseEnter={() => handleMouseEnter('authuser')}
                          onMouseLeave={handleMouseLeave}>
-                         <div className="auth-user-text"><li>Welcome: {user?.firstName || user?.name || "User"}</li></div>
+
+
+                              
+                                    
+                         <div className="auth-user-text"> <li>Welcome: {user?.firstName || user?.name || "User"}</li> </div>
                                 <div className="arrow">{activeDropdown === 'authuser' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
                             <div className="auth-dogs-navbar-links-hover-four">
                             <Link to="/userOrders" className="auth-link-section-auth-user"><div>Orders</div></Link>

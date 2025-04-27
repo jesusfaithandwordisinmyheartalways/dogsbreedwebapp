@@ -8,8 +8,8 @@ import fetchImage from '../controllers/fetchImage.js';
 
 
 const router = express.Router()
-router.post('/profile', uploadImage, userAuthentication)
-router.get('/images', fetchImage, userAuthentication)
+router.post('/profile', userAuthentication, ...uploadImage)
+router.get('/images', userAuthentication,  fetchImage )
 
 
 

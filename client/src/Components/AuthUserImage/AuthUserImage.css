@@ -1,0 +1,18 @@
+
+
+
+
+.AuthUserImage-Container {
+    display: flex;
+    position: relative;
+    top:0px;
+    left: -110px;
+   
+  }
+  
+  .AuthUserImage-Picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+    object-fit: contain;
+  }

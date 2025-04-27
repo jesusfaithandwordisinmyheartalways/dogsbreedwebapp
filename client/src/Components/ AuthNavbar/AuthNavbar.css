@@ -179,7 +179,8 @@
 /* Accessories Link */
 .link-accessories {
     position: relative;
-    left: -80px;
+    top:0px;
+    left: -31px;
     text-decoration: none;
     color: black;
     font-size: 1.1rem;
@@ -230,11 +231,12 @@
 
   .category-link {
     position: relative;
-    top:3px;
-    left: 0px;
+    top:6px;
+    left: 18px;
     text-decoration: none;
     color:black;
     font-size: 1.1rem;
+    cursor: pointer;
   }
 
   .category-link:hover{

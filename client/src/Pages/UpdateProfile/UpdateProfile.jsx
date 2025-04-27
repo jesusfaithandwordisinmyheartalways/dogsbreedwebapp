@@ -2,7 +2,7 @@
 
 
 
-import React , { useState }  from 'react'
+import React , { useState,  useEffect }  from 'react'
 import './UpdateProfile.css'
 
 
@@ -11,6 +11,15 @@ import './UpdateProfile.css'
 const UpdateProfile = () => {
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(''); 
+
+
+    useEffect(() => {
+      const savedImage = localStorage.getItem('profileImageUrl');
+      if (savedImage) {
+        setImageUrl(savedImage);
+      }
+    }, []);
+
 
 
 
@@ -35,6 +44,8 @@ const UpdateProfile = () => {
                 if (response.ok) {
                     alert('Image uploaded successfully!');
                     console.log(data); // { url: 'cloudinary-image-url' }
+                    setImageUrl(data.url);
+                    localStorage.setItem('profileImageUrl', data.url);
                   } else {
                     alert('Image upload failed.');
                   }
@@ -46,34 +57,46 @@ const UpdateProfile = () => {
 
 
 
+
+
+
+    const handleFileChange = (e) => {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+      if (selectedFile) {
+          const tempUrl = URL.createObjectURL(selectedFile);
+          setImageUrl(tempUrl); // Show preview immediately
+      }
+  }
+
+
+
   return (
    <>
 
         <div className='UpdateProfile-Container'>
             <div className='UpdateProfile-Wrapper'>
-                {/*---------------ADD CODE TO UPLOAD IMAGE & Cloudinary */}
-                
-                <div className="Upload-Image-Circle">
-               <input onChange={(e) => setFile(e.target.files[0])}  type="file" accept="image/*"  style={{ display: 'none' }} id="upload-input"
+
+            <div className="Upload-Image-Circle">
+            {imageUrl && (
+              <img  src={imageUrl}  alt="Profile"  className="Upload-Image-Preview"/>
+               )}
+
+            <input onChange={handleFileChange} type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              id="upload-input"
             />
-               <label htmlFor="upload-input" className="Upload-Button"> Upload Image  </label>
-            </div>
-
-
-            <div>
-            <h3>User Update Profile</h3>
-            <button onClick={uploadImage}>Submit Image</button>
+            <label htmlFor="upload-input" className="Upload-Button"> Upload Image </label>
           </div>
 
 
-
-                {imageUrl && (
-                        <div style={{ marginTop: '20px' }}>
-                            <img src={imageUrl} alt="Profile" style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover' }} />
-                        </div>
-                    )}
-
-
+          <div>
+            <h3>User Update Profile</h3>
+            <button onClick={uploadImage} className='img-btn'>Submit Image</button>
+          </div>
+      
+                
 
             </div>
         </div>

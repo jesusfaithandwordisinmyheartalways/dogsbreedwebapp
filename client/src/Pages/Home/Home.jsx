@@ -10,7 +10,7 @@ import FeaturedDeals from '../../Components/FeaturedDeals/FeaturedDeals'
 import HomeDogs from '../../Components/HomeDogs/HomeDogs'
 import HorizontalScroll from '../../Components/HorizontalScroll/HorizontalScroll'
 import CountUpAnimation from '../../Components/CountUpAnimation/CountUpAnimation'
-
+import AuthUserImage from '../../Components/AuthUserImage/AuthUserImage'
 
 
 

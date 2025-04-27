@@ -71,9 +71,11 @@ function App() {
   useEffect(() => {
     const storedUser = localStorage.getItem("authUser");
     if (storedUser) {
-      setAuthUser(JSON.parse(storedUser)); // Retrieve and set the user data
+      setAuthUser(JSON.parse(storedUser)); // ✅ Set from localStorage
+    } else {
+      userAuthentication(); // ✅ Only call server if no local user
     }
-  }, []);
+  }, []); // Run once when component mounts
 
 
 
@@ -107,17 +109,15 @@ function App() {
       });
       const data = await response.json();
       console.log("Auth response:", data); // Debug log
-      if (data.authenticated) {
+      if (data && data.authenticated && data.user) {
         setAuthUser(data.user);
         localStorage.setItem("authUser", JSON.stringify(data.user)); // Store in sessionStorage
       } else {
-        setAuthUser(null);
-        localStorage.removeItem("authUser"); // Clear from sessionStorage
+        console.log("No authenticated user found, keeping local auth.");
       }
     } catch (error) {
       console.error("Error checking authentication:", error);
-      setAuthUser(null);
-      localStorage.removeItem("authUser"); // Clear if error occurs
+     
     }
   }
 

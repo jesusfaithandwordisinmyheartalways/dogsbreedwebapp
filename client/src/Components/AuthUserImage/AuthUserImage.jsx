@@ -22,8 +22,15 @@ const AuthUserImage = () => {
     const fetchUserImage = async () => {
         try {
             const token = getCookie('profileImage');
-            if (!token) return;
-            const response = await fetch('https://dogsbreedwebappserver.onrender.com/images', {
+            if (!token) {
+              const localImage = localStorage.getItem('profileImageUrl');
+              if (localImage) {
+                setImageUrl(localImage);
+              }
+              return;
+            }
+
+            const response = await fetch('http://localhost:3001/images', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -42,6 +49,14 @@ const AuthUserImage = () => {
 
 
     useEffect(() => {
+        const localImage = localStorage.getItem('profileImageUrl');
+        if (localImage) {
+          setImageUrl(localImage);
+        }
+      }, []);
+
+
+    useEffect(() => {
         fetchUserImage();
     }, []);
 
@@ -53,7 +68,7 @@ const AuthUserImage = () => {
    <>
           <div className='AuthUserImage-Container'>
                 {imageUrl && (
-                    <img src={imageUrl} alt="User Profile" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }} />
+                    <img src={imageUrl} alt="User Profile" className="AuthUserImage-Picture" />
                 )}
             </div>
 
