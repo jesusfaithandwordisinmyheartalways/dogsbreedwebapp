@@ -30,7 +30,7 @@ const AuthUserImage = () => {
               return;
             }
 
-            const response = await fetch('http://localhost:3001/images', {
+            const response = await fetch('https://dogsbreedwebappserver.onrender.com/images', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
