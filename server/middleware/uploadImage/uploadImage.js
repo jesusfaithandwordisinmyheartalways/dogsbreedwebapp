@@ -33,8 +33,8 @@ const upload = multer({
 });
 
 const uploadImage = [
-    upload.single('image'), // first run multer upload
-    async (req, res) => { // then this async function runs
+    upload.single('image'), 
+    async (req, res) => { 
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }

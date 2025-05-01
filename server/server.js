@@ -20,6 +20,64 @@ import adminOrders from './routes/adminOrders.js'
 import userImageUpload from './routes/uploadImages.js'
 import connectMongoDB from './configuration/mongodb.js'
 import { resolve } from 'path';
+import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+
+
+// GraphQL Data 
+
+const dogs_breed =  [
+  { title: 'Multiple Dogs Breed', type: 'All Clients' },
+  { title: 'Multiple Payout Systems' , type: 'Google & Stripe '}
+]
+
+
+
+
+// GraphQL Data   Schema
+
+const typeDefs = gql`
+type Breeds {
+  title: String,
+  type: String
+}
+type Query {
+  dogs_breed: [Breeds]
+}
+`;
+
+
+
+// Resolvers
+const resolvers = {
+    Query: {
+      dogs_breed: () => dogs_breed
+    }
+}
+
+// Apollo Server setup
+const startApolloServer = async () => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    cache: "bounded",
+    introspection: true,
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault({ embed: true })
+    ]
+  });
+
+  await server.start()
+  server.applyMiddleware({ app, path: '/graphql' });
+  console.log(`🚀 GraphQL endpoint ready at http://localhost:${PORT}${server.graphqlPath}`);
+
+}
+
+startApolloServer();
+
+
+
+
 
 
 
@@ -39,6 +97,7 @@ app.use(cors({
 }))
 
 app.use(helmet());
+
 
 
 
