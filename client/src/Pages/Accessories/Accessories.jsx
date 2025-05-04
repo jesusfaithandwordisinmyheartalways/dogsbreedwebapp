@@ -117,13 +117,17 @@ const Accessories = () => {
 
                 {/*-----------// 👇 GraphQL code from server: This section displays the dog breed data fetched from the GraphQL API-----------*/}
                 <div className="graphql-container">
-                <ul>
+                       {loading && <p>Loading dog breeds...</p>}
+            {error && <p>Error fetching data: {error.message}</p>}
+            {data && (
+              <ul>
                 {data.dogs_breed.map((elements, index) => (
-                <li key={index}>
-                <strong>{elements.title}  {elements.type}</strong>
-                </li>
-            ))}
-                </ul>
+                  <li key={index}>
+                    <strong>{elements.title} {elements.type}</strong>
+                  </li>
+                ))}
+              </ul>
+            )}
                 </div>
 
 
