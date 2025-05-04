@@ -1,6 +1,6 @@
 Overview:
 
-Dog Store Full Stack E-COMMERCE  Web App  w Admin Panel (April 2025) MongoDB, Express & Node js, React, React lucide library | 
+Dog Store Full Stack E-COMMERCE  Web App  w Admin Panel (April 2025) MongoDB, Express & Node js, React, React lucide library | Graph QL
 
 
 Developed a Dog store web app to purchase different breeds of dogs and sizes. User is able to register,
