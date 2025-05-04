@@ -1,6 +1,6 @@
 
 
-import React, {useState, useEffect, cache} from "react";
+import React, {useState, useEffect} from "react";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
@@ -24,7 +24,6 @@ import Category from "./Pages/Category/Category";
 import AuthUserOrders from "./Pages/AuthUserOrders/AuthUserOrders";
 import GooglePayConfirm from "./Pages/GooglePayConfirm/GooglePayConfirm";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
-import GraphQLDogs from "./Pages/GraphQLDogs/GraphQLDogs";
 
 
 
@@ -210,8 +209,7 @@ useEffect(() => {
     <Route path="/userOrders" element={<AuthUserOrders />}/>
     <Route path="/update-profile" element={<UpdateProfile />}/>
     <Route path="/googlepayconfirm" element={<GooglePayConfirm />}/>
-    <Route path="/graphql-dogs" element={<GraphQLDogs />}/>
-
+\
 
 
 

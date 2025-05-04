@@ -111,3 +111,13 @@
     font-size: 1rem;
     font-family:'Times New Roman', Times, serif
 }
+
+
+
+
+
+
+
+.graphql-container ul {
+    list-style-type: none;
+}

@@ -35,45 +35,48 @@ const dogs_breed =  [
 
 
 // GraphQL Data   Schema
-
-const typeDefs = gql`
-type Breeds {
+const typeDefs = gql` //structure of the GraphQL data
+type Breeds {   //custom object type called Breeds
   title: String,
   type: String
 }
-type Query {
-  dogs_breed: [Breeds]
+
+
+type Query { //defines what kind of data you are allowed to ask for in a GraphQL query
+  dogs_breed: [Breeds] //ask for dogs_breed, and the server will return a list (array) of Breeds objects.
 }
 `;
 
 
 
 // Resolvers
-const resolvers = {
+const resolvers = { //Resolvers tell GraphQL how to fetch the actual data when a client asks for something defined in the schema.
     Query: {
       dogs_breed: () => dogs_breed
     }
 }
+
+
 
 // Apollo Server setup
 const startApolloServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    cache: "bounded",
-    introspection: true,
+    cache: "bounded", //sets how data is stored temporarily; "bounded" keeps it efficient
+    introspection: true, //allows tools like GraphQL Playground to explore your API 
     plugins: [
       ApolloServerPluginLandingPageLocalDefault({ embed: true })
     ]
   });
 
-  await server.start()
-  server.applyMiddleware({ app, path: '/graphql' });
+  await server.start()// starts the Apollo server and waits for it to be fully ready before moving on.
+  server.applyMiddleware({ app, path: '/graphql' });// makes /graphql the endpoint where clients can send GraphQL queries.
   console.log(`🚀 GraphQL endpoint ready at http://localhost:${PORT}${server.graphqlPath}`);
 
 }
 
-startApolloServer();
+startApolloServer(); //calls the function so that the server actually starts.
 
 
 
